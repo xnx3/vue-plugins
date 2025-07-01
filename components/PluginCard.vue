@@ -13,40 +13,27 @@
       <!-- GitHub Stars -->
       <div class="flex items-center text-sm text-slate-600 dark:text-slate-300">
         <Icon name="lucide:star" class="h-4 w-4 mr-1 text-yellow-500" />
-        <span v-if="props.isStarsLoading" class="inline-flex items-center">
-          <div class="w-3 h-3 bg-slate-300 dark:bg-slate-600 rounded animate-pulse" />
+        <span class="font-medium">
+          {{ formatStars(plugin.stars) }}
         </span>
-        <span v-else-if="stars !== null" class="font-medium">
-          {{ formatStars(stars) }}
-        </span>
-        <span v-else class="text-slate-400 dark:text-slate-500">--</span>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { VuePlugin } from '~/types'
+import type { VuePluginWithStars } from '~/types'
 import { navigateTo } from '#app'
 
 interface Props {
-  plugin: VuePlugin
-  starsData?: { stars: number; error?: string } | null
-  isStarsLoading?: boolean
+  plugin: VuePluginWithStars
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  starsData: null,
-  isStarsLoading: false
-})
+const props = defineProps<Props>()
 
 const navigateToPlugin = () => {
   navigateTo(`/plugins/${props.plugin.id}`)
 }
-
-const stars = computed(() => {
-  return props.starsData?.stars ?? null
-})
 
 const formatStars = (count: number): string => {
   if (count >= 1000000) {

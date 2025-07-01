@@ -3,14 +3,26 @@ import { $fetch } from "ofetch"
 import { defineEventHandler, getRouterParam, createError } from "h3"
 import { extractRepoPath, buildGitHubApiUrl, buildRawGitHubUrl } from "~/utils/github"
 import { pluginsData } from "~/server/data/plugins"
+import { getCachedStars, setCachedStars } from "~/server/utils/github-cache"
 
-async function fetchGitHubData(githubUrl: string): Promise<Partial<PluginWithStats>> {
+async function fetchGitHubData(githubUrl: string): Promise<{
+  stars: number
+  forks: number
+  issues: number
+  lastCommit: string
+  license: string
+}> {
   try {
     const repoPath = extractRepoPath(githubUrl)
     const response = await $fetch<GitHubRepo>(buildGitHubApiUrl(repoPath, ""))
 
+    const stars = response.stargazers_count
+    
+    // Update cache with fresh data
+    await setCachedStars(githubUrl, stars)
+
     return {
-      stars: response.stargazers_count,
+      stars,
       forks: response.forks_count,
       issues: response.open_issues_count,
       lastCommit: response.pushed_at,
@@ -18,8 +30,12 @@ async function fetchGitHubData(githubUrl: string): Promise<Partial<PluginWithSta
     }
   } catch (error) {
     console.error("Failed to fetch GitHub data:", error)
+    
+    // If we have cached stars, use them
+    const cachedStars = await getCachedStars(githubUrl)
+    
     return {
-      stars: 0,
+      stars: cachedStars?.stars || 0,
       forks: 0,
       issues: 0,
       lastCommit: new Date().toISOString(),
@@ -63,7 +79,7 @@ async function fetchGitHubReadme(githubUrl: string): Promise<string> {
 
           return content
         }
-      } catch (error) {
+      } catch {
         // Continue to next filename if this one fails
         continue
       }

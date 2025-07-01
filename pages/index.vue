@@ -74,8 +74,6 @@
             v-for="plugin in sortedData.data"
             :key="plugin.id"
             :plugin="plugin"
-            :stars-data="starsData[plugin.githubUrl] || null"
-            :is-stars-loading="isStarsLoading(plugin.githubUrl)"
           />
         </div>
         
@@ -95,7 +93,7 @@
 </template>
 
 <script setup lang="ts">
-import type { FilterOptions, PaginatedResponse, VuePlugin } from '~/types'
+import type { FilterOptions, PaginatedResponse, VuePluginWithStars } from '~/types'
 
 // SEO
 useHead({
@@ -114,7 +112,7 @@ const filters = ref<FilterOptions>({
   search: '',
   category: '',
   type: '',
-  sort: 'name-asc',
+  sort: 'stars-desc',
   page: 1,
   limit: 12
 })
@@ -124,22 +122,11 @@ const { data: categories } = await useFetch<string[]>('/api/categories')
 const { data: types } = await useFetch<string[]>('/api/types')
 
 // Fetch plugins with reactivity
-const { data, pending, error, refresh } = await useFetch<PaginatedResponse<VuePlugin>>('/api/plugins', {
+const { data, pending, error, refresh } = await useFetch<PaginatedResponse<VuePluginWithStars>>('/api/plugins', {
   query: filters,
   server: false,
   watch: [filters]
 })
-
-// GitHub stars functionality
-const { starsData, fetchStars, isLoading: isStarsLoading } = useGitHubStars()
-
-// Watch for data changes and fetch stars for visible plugins
-watch(data, async (newData) => {
-  if (newData?.data?.length) {
-    const githubUrls = newData.data.map(plugin => plugin.githubUrl)
-    await fetchStars(githubUrls)
-  }
-}, { immediate: true })
 
 // Computed property to sort plugins with official plugins first
 const sortedData = computed(() => {

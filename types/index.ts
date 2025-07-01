@@ -22,6 +22,10 @@ export interface VuePlugin {
   type: "official" | "community"
 }
 
+export interface VuePluginWithStars extends VuePlugin {
+  stars: number
+}
+
 export interface PluginWithStats extends VuePlugin {
   stars: number
   downloads: number

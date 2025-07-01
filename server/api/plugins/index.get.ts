@@ -118,8 +118,17 @@ export default defineEventHandler(async (event) => {
     pluginsWithStars.splice(0, pluginsWithStars.length, ...pluginsWithStars.filter((plugin) => plugin.category === category))
   }
 
-  // Apply sorting
+  // Apply sorting with official plugins always first
   pluginsWithStars.sort((a, b) => {
+    // First, prioritize official plugins
+    if (a.type === "official" && b.type !== "official") {
+      return -1
+    }
+    if (b.type === "official" && a.type !== "official") {
+      return 1
+    }
+    
+    // If both are the same type, apply the selected sorting
     switch (sort) {
       case "name-asc":
         return a.name.localeCompare(b.name)

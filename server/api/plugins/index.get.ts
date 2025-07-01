@@ -127,6 +127,8 @@ export default defineEventHandler(async (event) => {
         return b.name.localeCompare(a.name)
       case "stars-desc":
         return b.stars - a.stars
+      case "stars-asc":
+        return a.stars - b.stars
       default:
         return b.stars - a.stars
     }

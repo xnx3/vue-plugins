@@ -39,7 +39,7 @@ export interface PluginWithStats extends VuePlugin {
 export interface FilterOptions {
   search: string
   category: string
-  sort: "name-asc" | "name-desc" | "stars-desc"
+  sort: "name-asc" | "name-desc" | "stars-desc" | "stars-asc"
   page: number
   limit: number
 }

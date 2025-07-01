@@ -45,6 +45,7 @@
           <option value="name-asc">Name (A-Z)</option>
           <option value="name-desc">Name (Z-A)</option>
           <option value="stars-desc">Stars (High to Low)</option>
+          <option value="stars-asc">Stars (Low to High)</option>
         </select>
       </div>
       

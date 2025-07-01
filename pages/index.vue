@@ -1,7 +1,7 @@
 <template>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <!-- Hero Section with Background Animation -->
-    <div class="relative text-center mb-12 overflow-hidden min-h-[400px] flex flex-col justify-center py-16">
+    <div class="relative text-center overflow-hidden min-h-[400px] flex flex-col justify-center py-16">
       <!-- Background Animation -->
       <div class="absolute inset-0 z-0">
         <!-- Floating particles -->

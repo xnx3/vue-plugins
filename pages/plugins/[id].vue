@@ -1,234 +1,34 @@
 <template>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <!-- Loading State -->
-    <div v-if="pending" class="animate-pulse">
-      <div class="h-8 bg-slate-200 dark:bg-slate-700 rounded w-1/2 mb-4"/>
-      <div class="h-4 bg-slate-200 dark:bg-slate-700 rounded w-3/4 mb-8"/>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="md:col-span-2">
-          <div class="h-64 bg-slate-200 dark:bg-slate-700 rounded"/>
-        </div>
-        <div>
-          <div class="h-32 bg-slate-200 dark:bg-slate-700 rounded"/>
-        </div>
-      </div>
-    </div>
+    <PluginDetailLoadingState v-if="pending" />
     
     <!-- Error State -->
-    <div v-else-if="error" class="text-center py-12">
-      <Icon name="lucide:alert-circle" class="h-16 w-16 text-red-500 mx-auto mb-4" />
-      <h3 class="text-lg font-semibold text-[#2c3e50] dark:text-slate-100 mb-2">Plugin not found</h3>
-      <p class="text-slate-600 dark:text-slate-300 mb-4">{{ error.message }}</p>
-      <NuxtLink to="/" class="btn-primary">
-        Back to Plugins
-      </NuxtLink>
-    </div>
+    <ErrorState 
+      v-else-if="error"
+      title="Plugin not found"
+      :message="error.message"
+      link-to="/"
+      link-text="Back to Plugins"
+    />
     
     <!-- Plugin Details -->
     <div v-else-if="plugin">
       <!-- Header -->
-      <div class="mb-8">
-        <nav class="flex mb-4" aria-label="Breadcrumb">
-          <ol class="flex items-center space-x-2">
-            <li>
-              <NuxtLink to="/" class="text-slate-500 dark:text-slate-400 hover:text-[#4fc08d] transition-colors">
-                Plugins
-              </NuxtLink>
-            </li>
-            <li>
-              <Icon name="lucide:chevron-right" class="h-4 w-4 text-slate-400 dark:text-slate-500" />
-            </li>
-            <li>
-              <span class="text-[#2c3e50] dark:text-slate-100 font-semibold">{{ plugin.name }}</span>
-            </li>
-          </ol>
-        </nav>
-        
-        <div class="flex items-start justify-between">
-          <div class="flex-1">
-            <h1 class="text-4xl font-bold text-[#2c3e50] dark:text-slate-100 mb-3">{{ plugin.name }}</h1>
-            <p class="text-lg text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">{{ plugin.description }}</p>
-            
-            <div class="flex flex-wrap items-center gap-4 mb-6">
-              <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-[#4fc08d]/10 text-[#4fc08d] border border-[#4fc08d]/20">
-                {{ plugin.category }}
-              </span>
-              <div class="flex items-center text-slate-600 dark:text-slate-300">
-                <Icon name="lucide:user" class="h-4 w-4 mr-1" />
-                {{ plugin.author }}
-              </div>
-              <div class="flex items-center text-slate-600 dark:text-slate-300">
-                <Icon name="lucide:calendar" class="h-4 w-4 mr-1" />
-                Updated {{ formatDate(plugin.lastCommit) }}
-              </div>
-            </div>
-            
-            <div class="flex flex-wrap gap-2 mb-6">
-              <span 
-                v-for="tag in plugin.tags" 
-                :key="tag"
-                class="inline-flex items-center px-2 py-1 rounded text-sm font-medium bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors"
-              >
-                {{ tag }}
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
+      <PluginDetailHeader :plugin="plugin" />
       
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <!-- Main Content -->
         <div class="lg:col-span-2">
           <!-- Stats -->
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            <div class="card p-4 text-center">
-              <div class="flex items-center justify-center mb-2">
-                <Icon name="lucide:star" class="h-5 w-5 text-yellow-500" />
-              </div>
-              <div class="text-2xl font-bold text-[#2c3e50] dark:text-slate-100">{{ formatNumber(plugin.stars) }}</div>
-              <div class="text-sm text-slate-600 dark:text-slate-400">Stars</div>
-            </div>
-            <div class="card p-4 text-center">
-              <div class="flex items-center justify-center mb-2">
-                <Icon name="lucide:download" class="h-5 w-5 text-blue-500" />
-              </div>
-              <div class="text-2xl font-bold text-[#2c3e50] dark:text-slate-100">{{ formatNumber(plugin.downloads) }}</div>
-              <div class="text-sm text-slate-600 dark:text-slate-400">Downloads</div>
-            </div>
-            <div class="card p-4 text-center">
-              <div class="flex items-center justify-center mb-2">
-                <Icon name="lucide:git-fork" class="h-5 w-5 text-[#4fc08d]" />
-              </div>
-              <div class="text-2xl font-bold text-[#2c3e50] dark:text-slate-100">{{ formatNumber(plugin.forks) }}</div>
-              <div class="text-sm text-slate-600 dark:text-slate-400">Forks</div>
-            </div>
-            <div class="card p-4 text-center">
-              <div class="flex items-center justify-center mb-2">
-                <Icon name="lucide:alert-circle" class="h-5 w-5 text-red-500" />
-              </div>
-              <div class="text-2xl font-bold text-[#2c3e50] dark:text-slate-100">{{ formatNumber(plugin.issues) }}</div>
-              <div class="text-sm text-slate-600 dark:text-slate-400">Issues</div>
-            </div>
-          </div>
+          <PluginStats :plugin="plugin" />
           
-          <div class="card p-6">
-            <h2 class="text-xl font-semibold text-[#2c3e50] dark:text-slate-100 mb-4">Documentation</h2>
-            <div class="prose max-w-none dark:prose-invert">
-              <ClientOnly>
-                <!-- eslint-disable-next-line vue/no-v-html -->
-                <div v-html="renderedMarkdown" />
-                <template #fallback>
-                  <div class="animate-pulse">
-                    <div class="h-4 bg-slate-200 dark:bg-slate-700 rounded w-3/4 mb-2" />
-                    <div class="h-4 bg-slate-200 dark:bg-slate-700 rounded w-1/2 mb-2" />
-                    <div class="h-4 bg-slate-200 dark:bg-slate-700 rounded w-5/6 mb-2" />
-                  </div>
-                </template>
-              </ClientOnly>
-            </div>
-          </div>
+          <!-- Documentation -->
+          <PluginDocumentation :rendered-markdown="renderedMarkdown" />
         </div>
         
         <!-- Sidebar -->
-        <div class="space-y-6">
-          <!-- Quick Actions -->
-          <div class="card p-6">
-            <h3 class="text-lg font-semibold text-[#2c3e50] dark:text-slate-100 mb-4">Quick Actions</h3>
-            <div class="space-y-3">
-              <a 
-                :href="plugin.githubUrl" 
-                target="_blank"
-                class="flex items-center justify-between w-full p-3 rounded-lg border border-slate-200 dark:border-slate-600 hover:border-[#4fc08d] hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
-              >
-                <div class="flex items-center">
-                  <Icon name="lucide:github" class="h-5 w-5 mr-3" />
-                  <span class="font-semibold dark:text-slate-200">View on GitHub</span>
-                </div>
-                <Icon name="lucide:external-link" class="h-4 w-4 text-slate-400 dark:text-slate-500" />
-              </a>
-              
-              <a 
-                v-if="plugin.documentationUrl"
-                :href="plugin.documentationUrl" 
-                target="_blank"
-                class="flex items-center justify-between w-full p-3 rounded-lg border border-slate-200 dark:border-slate-600 hover:border-[#4fc08d] hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
-              >
-                <div class="flex items-center">
-                  <Icon name="lucide:book-open" class="h-5 w-5 mr-3" />
-                  <span class="font-semibold dark:text-slate-200">Documentation</span>
-                </div>
-                <Icon name="lucide:external-link" class="h-4 w-4 text-slate-400 dark:text-slate-500" />
-              </a>
-              
-              <a 
-                :href="`https://www.npmjs.com/package/${plugin.packageName}`" 
-                target="_blank"
-                class="flex items-center justify-between w-full p-3 rounded-lg border border-slate-200 dark:border-slate-600 hover:border-[#4fc08d] hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
-              >
-                <div class="flex items-center">
-                  <Icon name="lucide:package" class="h-5 w-5 mr-3" />
-                  <span class="font-semibold dark:text-slate-200">View on npm</span>
-                </div>
-                <Icon name="lucide:external-link" class="h-4 w-4 text-slate-400 dark:text-slate-500" />
-              </a>
-            </div>
-          </div>
-          
-          <!-- Installation -->
-          <div class="card p-6">
-            <h3 class="text-lg font-semibold text-[#2c3e50] dark:text-slate-100 mb-4">Installation</h3>
-            <div class="space-y-3">
-              <div>
-                <label class="block text-sm font-semibold text-[#2c3e50] dark:text-slate-200 mb-2">npm</label>
-                <div class="relative">
-                  <code class="block w-full p-3 bg-slate-50 dark:bg-slate-700 rounded-lg text-sm font-mono text-slate-800 dark:text-slate-200 pr-10">
-                    npm install {{ plugin.packageName }}
-                  </code>
-                  <button 
-                    class="absolute right-2 top-1/2 transform -translate-y-1/2 p-1 text-slate-400 dark:text-slate-500 hover:text-[#4fc08d]"
-                    @click="copyToClipboard(`npm install ${plugin.packageName}`)"
-                  >
-                    <Icon name="lucide:copy" class="h-4 w-4" />
-                  </button>
-                </div>
-              </div>
-              
-              <div>
-                <label class="block text-sm font-semibold text-[#2c3e50] dark:text-slate-200 mb-2">yarn</label>
-                <div class="relative">
-                  <code class="block w-full p-3 bg-slate-50 dark:bg-slate-700 rounded-lg text-sm font-mono text-slate-800 dark:text-slate-200 pr-10">
-                    yarn add {{ plugin.packageName }}
-                  </code>
-                  <button 
-                    class="absolute right-2 top-1/2 transform -translate-y-1/2 p-1 text-slate-400 dark:text-slate-500 hover:text-[#4fc08d]"
-                    @click="copyToClipboard(`yarn add ${plugin.packageName}`)"
-                  >
-                    <Icon name="lucide:copy" class="h-4 w-4" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Metadata -->
-          <div class="card p-6">
-            <h3 class="text-lg font-semibold text-[#2c3e50] dark:text-slate-100 mb-4">Information</h3>
-            <dl class="space-y-3">
-              <div>
-                <dt class="text-sm font-semibold text-slate-500 dark:text-slate-400">License</dt>
-                <dd class="text-sm text-slate-800 dark:text-slate-200">{{ plugin.license }}</dd>
-              </div>
-              <div>
-                <dt class="text-sm font-semibold text-slate-500 dark:text-slate-400">Package Name</dt>
-                <dd class="text-sm text-slate-800 dark:text-slate-200 font-mono">{{ plugin.packageName }}</dd>
-              </div>
-              <div>
-                <dt class="text-sm font-semibold text-slate-500 dark:text-slate-400">Last Commit</dt>
-                <dd class="text-sm text-slate-800 dark:text-slate-200">{{ formatDate(plugin.lastCommit) }}</dd>
-              </div>
-            </dl>
-          </div>
-        </div>
+        <PluginSidebar :plugin="plugin" />
       </div>
     </div>
   </div>
@@ -271,82 +71,4 @@ useHead(() => ({
     }
   ]
 }))
-
-// Utility functions
-const formatNumber = (num: number) => {
-  if (num >= 1000000) {
-    return (num / 1000000).toFixed(1) + 'M'
-  }
-  if (num >= 1000) {
-    return (num / 1000).toFixed(1) + 'K'
-  }
-  return num.toString()
-}
-
-const formatDate = (dateString: string) => {
-  return new Date(dateString).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  })
-}
-
-const copyToClipboard = async (text: string) => {
-  try {
-    if (import.meta.client && navigator.clipboard) {
-      await navigator.clipboard.writeText(text)
-      showToast('Package command copied to clipboard!')
-    }
-  } catch (err) {
-    console.error('Failed to copy text: ', err)
-    showToast('Failed to copy to clipboard', 'error')
-  }
-}
-
-const showToast = (message: string, type: 'success' | 'error' = 'success') => {
-  if (!import.meta.client) return
-  
-  // Create toast element
-  const toast = document.createElement('div')
-  toast.className = `fixed top-4 right-4 z-[9999] px-4 py-3 rounded-lg shadow-lg transform transition-all duration-300 translate-x-full opacity-0 max-w-sm ${
-    type === 'success' 
-      ? 'bg-[#4fc08d] text-white border border-[#42b883]' 
-      : 'bg-red-500 text-white border border-red-600'
-  }`
-  
-  // Add icon and message
-  toast.innerHTML = `
-    <div class="flex items-center space-x-2">
-      <svg class="h-5 w-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        ${type === 'success' 
-          ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>'
-          : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>'
-        }
-      </svg>
-      <span class="text-sm font-medium">${message}</span>
-    </div>
-  `
-  
-  // Add to DOM
-  document.body.appendChild(toast)
-  
-  // Animate in
-  requestAnimationFrame(() => {
-    toast.style.transform = 'translateX(0)'
-    toast.style.opacity = '1'
-  })
-  
-  // Auto-hide after 3 seconds
-  setTimeout(() => {
-    toast.style.transform = 'translateX(100%)'
-    toast.style.opacity = '0'
-    
-    // Remove from DOM after animation
-    setTimeout(() => {
-      if (toast.parentNode) {
-        document.body.removeChild(toast)
-      }
-    }, 300)
-  }, 3000)
-}
 </script>

@@ -1,29 +1,26 @@
 <template>
-  <div class="card p-6 hover:scale-[1.02] cursor-pointer hover:border-[#4fc08d]/30 transition-all" @click="navigateToPlugin">
-    <div class="flex items-start justify-between mb-4">
-      <div class="flex-1">
-        <h3 class="text-lg font-semibold text-[#2c3e50] mb-2">{{ plugin.name }}</h3>
-        <p class="text-slate-600 text-sm line-clamp-2 mb-3">{{ plugin.description }}</p>
-      </div>
+  <div class="card p-6 hover:scale-[1.02] cursor-pointer hover:border-[#4fc08d]/30 transition-all flex flex-col h-full" @click="navigateToPlugin">
+    <div class="flex-1">
+      <h3 class="text-lg font-semibold text-[#2c3e50] mb-2">{{ plugin.name }}</h3>
+      <p class="text-slate-600 text-sm line-clamp-2 mb-10">{{ plugin.description }}</p>
     </div>
     
-    <div class="flex items-center justify-between mb-4">
+    <div class="flex items-center justify-between mt-auto">
       <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium " :class="plugin.type === 'official' ? 'bg-[#4fc08d]/10 text-[#4fc08d] border border-[#4fc08d]/20' : 'bg-amber-50 text-amber-700 border border-amber-200'">
         {{ plugin.type }}
       </span>
-    </div>
-    
-    <div class="flex flex-wrap gap-1 mb-4">
-      <span 
-        v-for="tag in plugin.tags.slice(0, 3)" 
-        :key="tag"
-        class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors"
-      >
-        {{ tag }}
-      </span>
-      <span v-if="plugin.tags.length > 3" class="text-xs text-slate-500">
-        +{{ plugin.tags.length - 3 }} more
-      </span>
+      
+      <!-- GitHub Stars -->
+      <div class="flex items-center text-sm text-slate-600">
+        <Icon name="lucide:star" class="h-4 w-4 mr-1 text-yellow-500" />
+        <span v-if="props.isStarsLoading" class="inline-flex items-center">
+          <div class="w-3 h-3 bg-slate-300 rounded animate-pulse" />
+        </span>
+        <span v-else-if="stars !== null" class="font-medium">
+          {{ formatStars(stars) }}
+        </span>
+        <span v-else class="text-slate-400">--</span>
+      </div>
     </div>
   </div>
 </template>
@@ -31,14 +28,34 @@
 <script setup lang="ts">
 import type { VuePlugin } from '~/types'
 import { navigateTo } from '#app'
+
 interface Props {
   plugin: VuePlugin
+  starsData?: { stars: number; error?: string } | null
+  isStarsLoading?: boolean
 }
 
-const props = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  starsData: null,
+  isStarsLoading: false
+})
 
 const navigateToPlugin = () => {
   navigateTo(`/plugins/${props.plugin.id}`)
+}
+
+const stars = computed(() => {
+  return props.starsData?.stars ?? null
+})
+
+const formatStars = (count: number): string => {
+  if (count >= 1000000) {
+    return (count / 1000000).toFixed(1) + 'M'
+  }
+  if (count >= 1000) {
+    return (count / 1000).toFixed(1) + 'K'
+  }
+  return count.toString()
 }
 </script>
 

@@ -74,6 +74,8 @@
             v-for="plugin in sortedData.data"
             :key="plugin.id"
             :plugin="plugin"
+            :stars-data="starsData[plugin.githubUrl] || null"
+            :is-stars-loading="isStarsLoading(plugin.githubUrl)"
           />
         </div>
         
@@ -127,6 +129,17 @@ const { data, pending, error, refresh } = await useFetch<PaginatedResponse<VuePl
   server: false,
   watch: [filters]
 })
+
+// GitHub stars functionality
+const { starsData, fetchStars, isLoading: isStarsLoading } = useGitHubStars()
+
+// Watch for data changes and fetch stars for visible plugins
+watch(data, async (newData) => {
+  if (newData?.data?.length) {
+    const githubUrls = newData.data.map(plugin => plugin.githubUrl)
+    await fetchStars(githubUrls)
+  }
+}, { immediate: true })
 
 // Computed property to sort plugins with official plugins first
 const sortedData = computed(() => {

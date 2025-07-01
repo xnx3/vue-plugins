@@ -2,13 +2,11 @@ import type { FilterOptions, PaginatedResponse, VuePlugin } from "~/types"
 import { defineEventHandler, getQuery } from "h3"
 import { pluginsData } from "~/server/data/plugins"
 
-// Mock data - in a real app, this would come from a database
-
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event) as Partial<FilterOptions>
 
-  const { search = "", category = "", sort = "name-asc", page = 1, limit = 12 } = query
+  const { search = "", category = "", type = "", sort = "name-asc", page = 1, limit = 12 } = query
 
   let filteredPlugins = [...pluginsData]
 
@@ -28,6 +26,11 @@ export default defineEventHandler(async (event) => {
     filteredPlugins = filteredPlugins.filter((plugin) => plugin.category === category)
   }
 
+  // Apply type filter
+  if (type) {
+    filteredPlugins = filteredPlugins.filter((plugin) => plugin.type === type)
+  }
+
   // Apply sorting
   filteredPlugins.sort((a, b) => {
     switch (sort) {
@@ -35,8 +38,6 @@ export default defineEventHandler(async (event) => {
         return a.name.localeCompare(b.name)
       case "name-desc":
         return b.name.localeCompare(a.name)
-      case "updated-desc":
-        return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
       default:
         return a.name.localeCompare(b.name)
     }

@@ -15,6 +15,7 @@
     <PluginFilters
       :filters="filters"
       :categories="categories || []"
+      :types="types || []"
       :view-mode="viewMode"
       @update:filters="updateFilters"
       @update:view-mode="viewMode = $event"
@@ -45,16 +46,16 @@
     </div>
     
     <!-- Results -->
-    <div v-else-if="data">
+    <div v-else-if="sortedData">
       <!-- Results Header -->
       <div class="flex items-center justify-between mb-6">
         <p class="text-sm text-gray-600">
-          {{ data.total }} plugin{{ data.total !== 1 ? 's' : '' }} found
+          {{ sortedData.total }} plugin{{ sortedData.total !== 1 ? 's' : '' }} found
         </p>
       </div>
       
       <!-- Empty State -->
-      <div v-if="data.data.length === 0" class="text-center py-12">
+      <div v-if="sortedData.data.length === 0" class="text-center py-12">
         <Icon name="lucide:search-x" class="h-16 w-16 text-gray-400 mx-auto mb-4" />
         <h3 class="text-lg font-medium text-gray-900 mb-2">No plugins found</h3>
         <p class="text-gray-600">Try adjusting your search criteria</p>
@@ -70,7 +71,7 @@
           ]"
         >
           <PluginCard
-            v-for="plugin in data.data"
+            v-for="plugin in sortedData.data"
             :key="plugin.id"
             :plugin="plugin"
           />
@@ -79,10 +80,10 @@
         <!-- Pagination -->
         <div class="mt-12">
           <AppPagination
-            :current-page="data.page"
-            :total-pages="data.totalPages"
-            :total="data.total"
-            :limit="data.limit"
+            :current-page="sortedData.page"
+            :total-pages="sortedData.totalPages"
+            :total="sortedData.total"
+            :limit="sortedData.limit"
             @update:page="updatePage"
           />
         </div>
@@ -110,19 +111,44 @@ const viewMode = ref<'grid' | 'list'>('grid')
 const filters = ref<FilterOptions>({
   search: '',
   category: '',
+  type: '',
   sort: 'name-asc',
   page: 1,
   limit: 12
 })
 
-// Fetch categories
+// Fetch categories and types
 const { data: categories } = await useFetch<string[]>('/api/categories')
+const { data: types } = await useFetch<string[]>('/api/types')
 
 // Fetch plugins with reactivity
 const { data, pending, error, refresh } = await useFetch<PaginatedResponse<VuePlugin>>('/api/plugins', {
   query: filters,
   server: false,
   watch: [filters]
+})
+
+// Computed property to sort plugins with official plugins first
+const sortedData = computed(() => {
+  if (!data.value) return null
+  
+  const sortedPlugins = [...data.value.data].sort((a, b) => {
+    // First, prioritize official plugins
+    if (a.type === "official" && b.type === "community") {
+      return -1
+    }
+    if (a.type === "community" && b.type === "official") {
+      return 1
+    }
+    
+    // If both are the same type, maintain original order (already sorted by API)
+    return 0
+  })
+  
+  return {
+    ...data.value,
+    data: sortedPlugins
+  }
 })
 
 // Methods
@@ -147,6 +173,7 @@ watch(filters, (newFilters) => {
   
   if (newFilters.search) query.search = newFilters.search
   if (newFilters.category) query.category = newFilters.category
+  if (newFilters.type) query.type = newFilters.type
   if (newFilters.sort !== 'name-asc') query.sort = newFilters.sort
   if (newFilters.page > 1) query.page = newFilters.page.toString()
   
@@ -157,6 +184,7 @@ watch(filters, (newFilters) => {
 onMounted(() => {
   if (route.query.search) filters.value.search = route.query.search as string
   if (route.query.category) filters.value.category = route.query.category as string
+  if (route.query.type) filters.value.type = route.query.type as string
   if (route.query.sort) filters.value.sort = route.query.sort as FilterOptions['sort']
   if (route.query.page) filters.value.page = parseInt(route.query.page as string)
 })

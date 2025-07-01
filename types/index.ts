@@ -2,15 +2,24 @@ export interface VuePlugin {
   id: string
   name: string
   description: string
-  category: string
+  category: 
+    "Routing" |
+    "State Management" |
+    "Utilities" |
+    "Internationalization" |
+    "UI Framework" |
+    "Animation" |
+    "Forms" |
+    "Testing" |
+    "Development Tools" |
+    "Data Fetching",
   packageName: string
   githubUrl: string
   npmUrl?: string
   documentationUrl?: string
   author: string
   tags: string[]
-  createdAt: string
-  updatedAt: string
+  type: "official" | "community"
 }
 
 export interface PluginWithStats extends VuePlugin {
@@ -26,6 +35,7 @@ export interface PluginWithStats extends VuePlugin {
 export interface FilterOptions {
   search: string
   category: string
+  type: string
   sort: "name-asc" | "name-desc" | "stars-desc" | "updated-desc"
   page: number
   limit: number

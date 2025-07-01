@@ -1,6 +1,6 @@
 <template>
   <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-8">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
       <!-- Search -->
       <div>
         <label for="search" class="block text-sm font-medium text-gray-700 mb-2">Search</label>
@@ -33,6 +33,22 @@
         </select>
       </div>
       
+      <!-- Type -->
+      <div>
+        <label for="type" class="block text-sm font-medium text-gray-700 mb-2">Type</label>
+        <select
+          id="type"
+          v-model="localFilters.type"
+          class="input-field"
+          @change="updateFilters"
+        >
+          <option value="">All Types</option>
+          <option v-for="type in types" :key="type" :value="type">
+            {{ type.charAt(0).toUpperCase() + type.slice(1) }}
+          </option>
+        </select>
+      </div>
+      
       <!-- Sort -->
       <div>
         <label for="sort" class="block text-sm font-medium text-gray-700 mb-2">Sort By</label>
@@ -44,7 +60,6 @@
         >
           <option value="name-asc">Name (A-Z)</option>
           <option value="name-desc">Name (Z-A)</option>
-          <option value="updated-desc">Recently Updated</option>
         </select>
       </div>
       
@@ -100,6 +115,14 @@
         <Icon name="lucide:x" class="h-3 w-3 ml-1" />
       </button>
       <button
+        v-if="localFilters.type"
+        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800"
+        @click="clearType"
+      >
+        {{ localFilters.type.charAt(0).toUpperCase() + localFilters.type.slice(1) }}
+        <Icon name="lucide:x" class="h-3 w-3 ml-1" />
+      </button>
+      <button
         class="text-xs text-gray-500 hover:text-gray-700 underline"
         @click="clearAllFilters"
       >
@@ -117,6 +140,7 @@ import type { FilterOptions } from '~/types'
 interface Props {
   filters: FilterOptions
   categories: string[]
+  types: string[]
   viewMode: 'grid' | 'list'
 }
 
@@ -131,7 +155,7 @@ const emit = defineEmits<Emits>()
 const localFilters = ref({ ...props.filters })
 
 const hasActiveFilters = computed(() => {
-  return localFilters.value.search || localFilters.value.category
+  return localFilters.value.search || localFilters.value.category || localFilters.value.type
 })
 
 const updateFilters = () => {
@@ -150,9 +174,15 @@ const clearCategory = () => {
   updateFilters()
 }
 
+const clearType = () => {
+  localFilters.value.type = ''
+  updateFilters()
+}
+
 const clearAllFilters = () => {
   localFilters.value.search = ''
   localFilters.value.category = ''
+  localFilters.value.type = ''
   updateFilters()
 }
 

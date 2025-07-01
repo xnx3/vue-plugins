@@ -8,13 +8,9 @@
     </div>
     
     <div class="flex items-center justify-between mb-4">
-      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800">
-        {{ plugin.category }}
+      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium " :class="plugin.type === 'official' ? 'bg-emerald-100 text-emerald-800' : 'bg-yellow-100 text-yellow-700'">
+        {{ plugin.type }}
       </span>
-      <div class="flex items-center text-gray-500 text-sm">
-        <Icon name="lucide:user" class="h-4 w-4 mr-1" />
-        {{ plugin.author }}
-      </div>
     </div>
     
     <div class="flex flex-wrap gap-1 mb-4">
@@ -28,17 +24,6 @@
       <span v-if="plugin.tags.length > 3" class="text-xs text-gray-500">
         +{{ plugin.tags.length - 3 }} more
       </span>
-    </div>
-    
-    <div class="flex items-center justify-between text-sm text-gray-500">
-      <div class="flex items-center">
-        <Icon name="lucide:package" class="h-4 w-4 mr-1" />
-        {{ plugin.packageName }}
-      </div>
-      <div class="flex items-center">
-        <Icon name="lucide:calendar" class="h-4 w-4 mr-1" />
-        {{ formatDate(plugin.updatedAt) }}
-      </div>
     </div>
   </div>
 </template>
@@ -54,13 +39,6 @@ const props = defineProps<Props>()
 
 const navigateToPlugin = () => {
   navigateTo(`/plugins/${props.plugin.id}`)
-}
-
-const formatDate = (dateString: string) => {
-  return new Date(dateString).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'short'
-  })
 }
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <!-- Loading State -->
     <div v-if="pending" class="animate-pulse">
       <div class="h-8 bg-gray-200 rounded w-1/2 mb-4"/>
@@ -111,17 +111,10 @@
             </div>
           </div>
           
-          <!-- README placeholder -->
           <div class="card p-6">
             <h2 class="text-xl font-semibold text-gray-900 mb-4">Documentation</h2>
             <div class="prose max-w-none">
-              <p class="text-gray-600">
-                This is where the plugin's README content would be displayed. 
-                In a real implementation, you would fetch and render the README from GitHub.
-              </p>
-              <p class="text-gray-600 mt-4">
-                For now, you can visit the links in the sidebar to access the official documentation and repository.
-              </p>
+              <vue-markdown :source="plugin.readme" :options="{ html: true }" />
             </div>
           </div>
         </div>
@@ -233,6 +226,7 @@
 
 <script setup lang="ts">
 import type { PluginWithStats } from '~/types'
+import VueMarkdown from 'vue-markdown-render'
 
 const route = useRoute()
 const pluginId = route.params.id as string

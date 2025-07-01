@@ -1,12 +1,13 @@
 import type { PluginWithStats, GitHubRepo } from "~/types"
 import { $fetch } from "ofetch"
 import { defineEventHandler, getRouterParam, createError } from "h3"
+import { extractRepoPath, buildGitHubApiUrl, buildRawGitHubUrl } from "~/utils/github"
 import { pluginsData } from "~/server/data/plugins"
 
 async function fetchGitHubData(githubUrl: string): Promise<Partial<PluginWithStats>> {
   try {
-    const repoPath = githubUrl.replace("https://github.com/", "")
-    const response = await $fetch<GitHubRepo>(`https://api.github.com/repos/${repoPath}`)
+    const repoPath = extractRepoPath(githubUrl)
+    const response = await $fetch<GitHubRepo>(buildGitHubApiUrl(repoPath, ""))
 
     return {
       stars: response.stargazers_count,
@@ -27,6 +28,54 @@ async function fetchGitHubData(githubUrl: string): Promise<Partial<PluginWithSta
   }
 }
 
+async function fetchGitHubReadme(githubUrl: string): Promise<string> {
+  try {
+    const repoPath = extractRepoPath(githubUrl)
+
+    // Try to fetch README.md first, then other variants
+    const readmeFiles = ["README.md", "README.rst", "README.txt", "readme.md", "readme.rst", "readme.txt"]
+
+    for (const filename of readmeFiles) {
+      try {
+        const response = await $fetch<{ content: string; encoding: string }>(
+          buildGitHubApiUrl(repoPath, `/contents/${filename}`),
+          {
+            headers: {
+              Accept: "application/vnd.github.v3+json",
+              "User-Agent": "Vue-Plugins-Collection",
+            },
+          },
+        )
+
+        if (response.content && response.encoding === "base64") {
+          let content = Buffer.from(response.content, "base64").toString("utf-8")
+
+          // Fix relative URLs in the README to point to the correct GitHub URLs
+          content = content.replace(
+            /!\[([^\]]*)\]$$(?!https?:\/\/)([^)]+)$$/g,
+            `![$$1](${buildRawGitHubUrl(repoPath, "main", "$2")})`,
+          )
+
+          content = content.replace(
+            /\[([^\]]+)\]$$(?!https?:\/\/)([^)]+)\.md$$/g,
+            `[$1](https://github.com/${repoPath}/blob/main/$2.md)`,
+          )
+
+          return content
+        }
+      } catch (error) {
+        // Continue to next filename if this one fails
+        continue
+      }
+    }
+
+    return ""
+  } catch (error) {
+    console.error("Failed to fetch README:", error)
+    return ""
+  }
+}
+
 export default defineEventHandler(async (event) => {
   const id = getRouterParam(event, "id")
 
@@ -38,8 +87,11 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  // Fetch GitHub data
-  const githubData = await fetchGitHubData(plugin.githubUrl)
+  // Fetch GitHub data and README in parallel
+  const [githubData, readme] = await Promise.all([
+    fetchGitHubData(plugin.githubUrl),
+    fetchGitHubReadme(plugin.githubUrl),
+  ])
 
   // Mock downloads data (in real app, fetch from npm API)
   const downloads = Math.floor(Math.random() * 1000000) + 10000
@@ -48,6 +100,7 @@ export default defineEventHandler(async (event) => {
     ...plugin,
     ...githubData,
     downloads,
+    readme,
   }
 
   return pluginWithStats

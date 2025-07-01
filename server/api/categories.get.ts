@@ -12,5 +12,6 @@ export default defineEventHandler(() => {
     "Testing",
     "Development Tools",
     "Data Fetching",
+    "CMS",
   ]
 })

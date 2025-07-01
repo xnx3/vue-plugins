@@ -12,7 +12,8 @@ export interface VuePlugin {
     "Forms" |
     "Testing" |
     "Development Tools" |
-    "Data Fetching",
+    "Data Fetching" |
+    "CMS",
   packageName: string
   githubUrl: string
   npmUrl?: string

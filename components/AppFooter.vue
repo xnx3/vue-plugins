@@ -1,8 +1,8 @@
 <template>
-  <footer class="bg-white border-t border-slate-200 mt-16">
+  <footer class="bg-white border-t border-slate-200 mt-16 dark:bg-slate-900 dark:border-slate-700">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div class="text-center">
-        <p class="text-slate-600">
+        <p class="text-slate-600 dark:text-slate-300">
           Made with 💚 by 
           <a 
             href="https://monterail.com" 

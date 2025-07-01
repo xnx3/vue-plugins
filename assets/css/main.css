@@ -14,7 +14,7 @@
 
 @layer base {
   body {
-    @apply bg-white text-slate-800;
+    @apply bg-white text-slate-800 dark:bg-slate-900 dark:text-slate-200;
   }
 }
 
@@ -24,15 +24,15 @@
   }
 
   .btn-secondary {
-    @apply bg-white hover:bg-slate-50 text-slate-700 font-semibold px-6 py-3 rounded-lg border border-slate-200 transition-all duration-200 shadow-sm hover:shadow-md;
+    @apply bg-white hover:bg-slate-50 text-slate-700 font-semibold px-6 py-3 rounded-lg border border-slate-200 transition-all duration-200 shadow-sm hover:shadow-md dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-200 dark:border-slate-600;
   }
 
   .card {
-    @apply bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-slate-200;
+    @apply bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-slate-200 dark:bg-slate-800 dark:border-slate-700;
   }
 
   .input-field {
-    @apply w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-[#4fc08d] focus:ring-2 focus:ring-[#4fc08d]/20 transition-all duration-200 bg-white;
+    @apply w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-[#4fc08d] focus:ring-2 focus:ring-[#4fc08d]/20 transition-all duration-200 bg-white dark:bg-slate-800 dark:border-slate-600 dark:text-slate-200;
   }
 }
 
@@ -54,4 +54,26 @@
 
 .vue-shadow-lg {
   box-shadow: 0 10px 15px -3px rgba(79, 192, 141, 0.1), 0 4px 6px -2px rgba(79, 192, 141, 0.05);
+}
+
+/* Dark mode prose improvements */
+@layer utilities {
+  .prose-invert {
+    --tw-prose-body: rgb(226 232 240);
+    --tw-prose-headings: rgb(248 250 252);
+    --tw-prose-lead: rgb(203 213 225);
+    --tw-prose-links: #4fc08d;
+    --tw-prose-bold: rgb(248 250 252);
+    --tw-prose-counters: rgb(156 163 175);
+    --tw-prose-bullets: rgb(75 85 99);
+    --tw-prose-hr: rgb(55 65 81);
+    --tw-prose-quotes: rgb(248 250 252);
+    --tw-prose-quote-borders: rgb(55 65 81);
+    --tw-prose-captions: rgb(156 163 175);
+    --tw-prose-code: rgb(248 250 252);
+    --tw-prose-pre-code: rgb(226 232 240);
+    --tw-prose-pre-bg: rgb(30 41 59);
+    --tw-prose-th-borders: rgb(55 65 81);
+    --tw-prose-td-borders: rgb(55 65 81);
+  }
 }

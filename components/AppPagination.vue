@@ -19,7 +19,7 @@
     
     <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
       <div>
-        <p class="text-sm text-slate-700">
+        <p class="text-sm text-slate-700 dark:text-slate-300">
           Showing
           <span class="font-semibold">{{ startItem }}</span>
           to
@@ -33,7 +33,7 @@
         <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
           <button
             :disabled="currentPage <= 1"
-            class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-slate-300 bg-white text-sm font-medium text-slate-500 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed"
+            class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-sm font-medium text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed"
             @click="emit('update:page', currentPage - 1)"
           >
             <Icon name="lucide:chevron-left" class="h-5 w-5" />
@@ -46,7 +46,7 @@
               'relative inline-flex items-center px-4 py-2 border text-sm font-medium',
               page === currentPage
                 ? 'z-10 bg-[#4fc08d]/10 border-[#4fc08d] text-[#4fc08d]'
-                : 'bg-white border-slate-300 text-slate-500 hover:bg-slate-50'
+                : 'bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700'
             ]"
             @click="emit('update:page', page)"
           >
@@ -55,7 +55,7 @@
           
           <button
             :disabled="currentPage >= totalPages"
-            class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-slate-300 bg-white text-sm font-medium text-slate-500 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed"
+            class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-sm font-medium text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed"
             @click="emit('update:page', currentPage + 1)"
           >
             <Icon name="lucide:chevron-right" class="h-5 w-5" />

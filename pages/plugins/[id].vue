@@ -268,10 +268,58 @@ const copyToClipboard = async (text: string) => {
   try {
     if (import.meta.client && navigator.clipboard) {
       await navigator.clipboard.writeText(text)
-      // You could add a toast notification here
+      showToast('Package command copied to clipboard!')
     }
   } catch (err) {
     console.error('Failed to copy text: ', err)
+    showToast('Failed to copy to clipboard', 'error')
   }
+}
+
+const showToast = (message: string, type: 'success' | 'error' = 'success') => {
+  if (!import.meta.client) return
+  
+  // Create toast element
+  const toast = document.createElement('div')
+  toast.className = `fixed top-4 right-4 z-[9999] px-4 py-3 rounded-lg shadow-lg transform transition-all duration-300 translate-x-full opacity-0 max-w-sm ${
+    type === 'success' 
+      ? 'bg-[#4fc08d] text-white border border-[#42b883]' 
+      : 'bg-red-500 text-white border border-red-600'
+  }`
+  
+  // Add icon and message
+  toast.innerHTML = `
+    <div class="flex items-center space-x-2">
+      <svg class="h-5 w-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        ${type === 'success' 
+          ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>'
+          : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>'
+        }
+      </svg>
+      <span class="text-sm font-medium">${message}</span>
+    </div>
+  `
+  
+  // Add to DOM
+  document.body.appendChild(toast)
+  
+  // Animate in
+  requestAnimationFrame(() => {
+    toast.style.transform = 'translateX(0)'
+    toast.style.opacity = '1'
+  })
+  
+  // Auto-hide after 3 seconds
+  setTimeout(() => {
+    toast.style.transform = 'translateX(100%)'
+    toast.style.opacity = '0'
+    
+    // Remove from DOM after animation
+    setTimeout(() => {
+      if (toast.parentNode) {
+        document.body.removeChild(toast)
+      }
+    }, 300)
+  }, 3000)
 }
 </script>

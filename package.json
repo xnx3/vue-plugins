@@ -7,7 +7,11 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "lint": "eslint . --ext .js,.ts,.vue",
+    "lint:fix": "eslint . --ext .js,.ts,.vue --fix",
+    "typecheck": "nuxi typecheck",
+    "test": "echo \"No tests specified\" && exit 0"
   },
   "dependencies": {
     "@nuxt/eslint": "1.4.1",

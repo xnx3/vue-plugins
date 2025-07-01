@@ -41,9 +41,7 @@
     <PluginFilters
       :filters="filters"
       :categories="categories || []"
-      :view-mode="viewMode"
       @update:filters="updateFilters"
-      @update:view-mode="viewMode = $event"
     />
     
     <!-- Loading State -->
@@ -86,15 +84,9 @@
         <p class="text-gray-600 dark:text-slate-300">Try adjusting your search criteria</p>
       </div>
       
-      <!-- Plugin Grid/List -->
+      <!-- Plugin Grid -->
       <div v-else>
-        <div 
-          :class="[
-            viewMode === 'grid' 
-              ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' 
-              : 'space-y-4'
-          ]"
-        >
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <PluginCard
             v-for="plugin in sortedData.data"
             :key="plugin.id"
@@ -132,7 +124,6 @@ useHead({
 })
 
 // State
-const viewMode = ref<'grid' | 'list'>('grid')
 const filters = ref<FilterOptions>({
   search: '',
   category: '',

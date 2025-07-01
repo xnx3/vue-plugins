@@ -48,35 +48,20 @@
         </select>
       </div>
       
-      <!-- View Toggle -->
+      <!-- Results per Page -->
       <div>
-        <label class="block text-sm font-semibold text-[#2c3e50] dark:text-slate-200 mb-2">View</label>
-        <div class="flex rounded-lg border border-slate-200 dark:border-slate-600 p-1">
-          <button
-            :class="[
-              'flex-1 flex items-center justify-center px-3 py-2 rounded-md text-sm font-medium transition-all',
-              viewMode === 'grid' 
-                ? 'bg-[#4fc08d] text-white shadow-sm' 
-                : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300'
-            ]"
-            @click="$emit('update:viewMode', 'grid')"
-          >
-            <Icon name="lucide:grid-3x3" class="h-4 w-4 mr-1" />
-            Grid
-          </button>
-          <button
-            :class="[
-              'flex-1 flex items-center justify-center px-3 py-2 rounded-md text-sm font-medium transition-all',
-              viewMode === 'list' 
-                ? 'bg-[#4fc08d] text-white shadow-sm' 
-                : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300'
-            ]"
-            @click="$emit('update:viewMode', 'list')"
-          >
-            <Icon name="lucide:list" class="h-4 w-4 mr-1" />
-            List
-          </button>
-        </div>
+        <label for="limit" class="block text-sm font-semibold text-[#2c3e50] dark:text-slate-200 mb-2">Results per Page</label>
+        <select
+          id="limit"
+          v-model="localFilters.limit"
+          class="input-field"
+          @change="updateFilters"
+        >
+          <option :value="6">6 per page</option>
+          <option :value="12">12 per page</option>
+          <option :value="24">24 per page</option>
+          <option :value="48">48 per page</option>
+        </select>
       </div>
     </div>
     
@@ -117,12 +102,10 @@ import type { FilterOptions } from '~/types'
 interface Props {
   filters: FilterOptions
   categories: string[]
-  viewMode: 'grid' | 'list'
 }
 
 interface Emits {
   (e: 'update:filters', filters: FilterOptions): void
-  (e: 'update:viewMode', mode: 'grid' | 'list'): void
 }
 
 const props = defineProps<Props>()

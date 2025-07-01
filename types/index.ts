@@ -13,7 +13,8 @@ export interface VuePlugin {
     "Testing" |
     "Development Tools" |
     "Data Fetching" |
-    "CMS",
+    "CMS" |
+    "Search",
   packageName: string
   githubUrl: string
   npmUrl?: string

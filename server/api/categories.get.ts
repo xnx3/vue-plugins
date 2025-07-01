@@ -13,5 +13,6 @@ export default defineEventHandler(() => {
     "Development Tools",
     "Data Fetching",
     "CMS",
+    "Search",
   ]
 })

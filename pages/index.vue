@@ -1,5 +1,6 @@
 <template>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <!-- Hero Section with Background Animation -->
     <div class="relative text-center overflow-hidden min-h-[400px] flex flex-col justify-center py-16">
       <!-- Background Animation -->
@@ -110,7 +111,7 @@
             :limit="sortedData.limit"
             @update:page="updatePage"
           />
-        </div>
+        </div>        </div>
       </div>
     </div>
   </div>

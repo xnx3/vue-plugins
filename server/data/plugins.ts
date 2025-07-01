@@ -381,19 +381,7 @@ export const pluginsData: VuePlugin[] = [
     "tags": ["query-builder", "database", "filters", "vue3", "community"],
     "type": "community"
   },
-  {
-    "id": "vue-use-web",
-    "name": "Vue Use Web",
-    "description": "Web APIs for Vue 3 Composition API (Camera, Geolocation, etc.).",
-    "category": "Utilities",
-    "packageName": "@vueuse/core",
-    "githubUrl": "https://github.com/vueuse/vueuse",
-    "npmUrl": "https://www.npmjs.com/package/@vueuse/core",
-    "documentationUrl": "https://vueuse.org/functions.html#category=browser",
-    "author": "VueUse Team",
-    "tags": ["web-apis", "browser", "device", "vue3", "community"],
-    "type": "community"
-  },
+
   {
     "id": "vue-use-gesture",
     "name": "Vue Use Gesture",
@@ -992,45 +980,9 @@ export const pluginsData: VuePlugin[] = [
     "tags": ["cms", "headless", "visual-editing", "content", "vue3", "community"],
     "type": "community"
   },
-  {
-    "id": "contentful-vue",
-    "name": "Contentful Vue",
-    "description": "Contentful SDK for Vue.js applications with TypeScript support.",
-    "category": "CMS",
-    "packageName": "contentful",
-    "githubUrl": "https://github.com/contentful/contentful.js",
-    "npmUrl": "https://www.npmjs.com/package/contentful",
-    "documentationUrl": "https://www.contentful.com/developers/docs/javascript/",
-    "author": "Contentful",
-    "tags": ["cms", "headless", "content", "api", "vue3", "community"],
-    "type": "community"
-  },
-  {
-    "id": "sanity-vue",
-    "name": "Sanity Client",
-    "description": "JavaScript client for Sanity CMS with excellent Vue.js integration.",
-    "category": "CMS",
-    "packageName": "@sanity/client",
-    "githubUrl": "https://github.com/sanity-io/client",
-    "npmUrl": "https://www.npmjs.com/package/@sanity/client",
-    "documentationUrl": "https://www.sanity.io/docs/js-client",
-    "author": "Sanity.io",
-    "tags": ["cms", "headless", "real-time", "content", "vue3", "community"],
-    "type": "community"
-  },
-  {
-    "id": "strapi-sdk-js",
-    "name": "Strapi SDK",
-    "description": "JavaScript SDK for Strapi headless CMS with Vue.js compatibility.",
-    "category": "CMS",
-    "packageName": "@strapi/sdk-js",
-    "githubUrl": "https://github.com/strapi/sdk-js",
-    "npmUrl": "https://www.npmjs.com/package/@strapi/sdk-js",
-    "documentationUrl": "https://docs.strapi.io/dev-docs/sdk",
-    "author": "Strapi",
-    "tags": ["cms", "headless", "open-source", "content", "vue3", "community"],
-    "type": "community"
-  },
+
+
+
   {
     "id": "prismic-vue",
     "name": "Prismic Vue",
@@ -1044,58 +996,10 @@ export const pluginsData: VuePlugin[] = [
     "tags": ["cms", "headless", "slices", "content", "vue3", "community"],
     "type": "community"
   },
-  {
-    "id": "ghost-content-api",
-    "name": "Ghost Content API",
-    "description": "JavaScript SDK for Ghost publishing platform with Vue.js integration.",
-    "category": "CMS",
-    "packageName": "@tryghost/content-api",
-    "githubUrl": "https://github.com/TryGhost/SDK",
-    "npmUrl": "https://www.npmjs.com/package/@tryghost/content-api",
-    "documentationUrl": "https://ghost.org/docs/content-api/",
-    "author": "Ghost Foundation",
-    "tags": ["cms", "publishing", "blog", "content", "vue3", "community"],
-    "type": "community"
-  },
-  {
-    "id": "forestry-vue",
-    "name": "Forestry (Tina CMS)",
-    "description": "TinaCMS (formerly Forestry) integration for Vue.js static sites.",
-    "category": "CMS",
-    "packageName": "tinacms",
-    "githubUrl": "https://github.com/tinacms/tinacms",
-    "npmUrl": "https://www.npmjs.com/package/tinacms",
-    "documentationUrl": "https://tina.io/docs/",
-    "author": "TinaCMS Team",
-    "tags": ["cms", "git-based", "markdown", "static-site", "vue3", "community"],
-    "type": "community"
-  },
-  {
-    "id": "directus-sdk",
-    "name": "Directus SDK",
-    "description": "TypeScript SDK for Directus headless CMS with Vue.js composable patterns.",
-    "category": "CMS",
-    "packageName": "@directus/sdk",
-    "githubUrl": "https://github.com/directus/directus",
-    "npmUrl": "https://www.npmjs.com/package/@directus/sdk",
-    "documentationUrl": "https://docs.directus.io/reference/sdk/",
-    "author": "Directus",
-    "tags": ["cms", "headless", "open-source", "database", "vue3", "community"],
-    "type": "community"
-  },
-  {
-    "id": "payload-vue",
-    "name": "Payload CMS",
-    "description": "TypeScript-first headless CMS with Vue.js frontend integration.",
-    "category": "CMS",
-    "packageName": "payload",
-    "githubUrl": "https://github.com/payloadcms/payload",
-    "npmUrl": "https://www.npmjs.com/package/payload",
-    "documentationUrl": "https://payloadcms.com/docs",
-    "author": "Payload CMS",
-    "tags": ["cms", "headless", "typescript", "self-hosted", "vue3", "community"],
-    "type": "community"
-  },
+
+
+
+
   {
     "id": "builder-io-vue",
     "name": "Builder.io Vue",
@@ -1109,19 +1013,7 @@ export const pluginsData: VuePlugin[] = [
     "tags": ["cms", "visual-editor", "page-builder", "headless", "vue3", "community"],
     "type": "community"
   },
-  {
-    "id": "keystone-vue",
-    "name": "Keystone 6",
-    "description": "GraphQL-based headless CMS with Vue.js frontend capabilities.",
-    "category": "CMS",
-    "packageName": "@keystone-6/core",
-    "githubUrl": "https://github.com/keystonejs/keystone",
-    "npmUrl": "https://www.npmjs.com/package/@keystone-6/core",
-    "documentationUrl": "https://keystonejs.com/docs",
-    "author": "Keystone Team",
-    "tags": ["cms", "graphql", "headless", "node", "vue3", "community"],
-    "type": "community"
-  },
+
   {
     "id": "vue-instantsearch",
     "name": "Vue InstantSearch",
@@ -1135,32 +1027,8 @@ export const pluginsData: VuePlugin[] = [
     "tags": ["search", "algolia", "instantsearch", "ui", "vue3", "community"],
     "type": "community"
   },
-  {
-    "id": "algoliasearch",
-    "name": "Algolia Search",
-    "description": "JavaScript API client for Algolia search with Vue.js integration.",
-    "category": "Search",
-    "packageName": "algoliasearch",
-    "githubUrl": "https://github.com/algolia/algoliasearch-client-javascript",
-    "npmUrl": "https://www.npmjs.com/package/algoliasearch",
-    "documentationUrl": "https://www.algolia.com/doc/api-client/getting-started/install/javascript/",
-    "author": "Algolia",
-    "tags": ["search", "algolia", "api-client", "vue3", "community"],
-    "type": "community"
-  },
-  {
-    "id": "meilisearch-vue",
-    "name": "Meilisearch Vue",
-    "description": "Vue.js integration for Meilisearch, an open-source search engine.",
-    "category": "Search",
-    "packageName": "meilisearch",
-    "githubUrl": "https://github.com/meilisearch/meilisearch-js",
-    "npmUrl": "https://www.npmjs.com/package/meilisearch",
-    "documentationUrl": "https://docs.meilisearch.com/learn/getting_started/javascript/",
-    "author": "Meilisearch",
-    "tags": ["search", "meilisearch", "open-source", "vue3", "community"],
-    "type": "community"
-  },
+
+
   {
     "id": "vue-fuse",
     "name": "Vue Fuse",
@@ -1174,58 +1042,10 @@ export const pluginsData: VuePlugin[] = [
     "tags": ["search", "fuse", "fuzzy-search", "client-side", "vue3", "community"],
     "type": "community"
   },
-  {
-    "id": "typesense-instantsearch-vue",
-    "name": "Typesense InstantSearch Vue",
-    "description": "Vue.js components for Typesense search with InstantSearch integration.",
-    "category": "Search",
-    "packageName": "typesense-instantsearch-adapter",
-    "githubUrl": "https://github.com/typesense/typesense-instantsearch-adapter",
-    "npmUrl": "https://www.npmjs.com/package/typesense-instantsearch-adapter",
-    "documentationUrl": "https://typesense.org/docs/guide/search-ui-components.html",
-    "author": "Typesense",
-    "tags": ["search", "typesense", "instantsearch", "open-source", "vue3", "community"],
-    "type": "community"
-  },
-  {
-    "id": "elasticsearch-vue",
-    "name": "Elasticsearch JavaScript Client",
-    "description": "Official Elasticsearch client for JavaScript with Vue.js compatibility.",
-    "category": "Search",
-    "packageName": "@elastic/elasticsearch",
-    "githubUrl": "https://github.com/elastic/elasticsearch-js",
-    "npmUrl": "https://www.npmjs.com/package/@elastic/elasticsearch",
-    "documentationUrl": "https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/index.html",
-    "author": "Elastic",
-    "tags": ["search", "elasticsearch", "elastic", "enterprise", "vue3", "community"],
-    "type": "community"
-  },
-  {
-    "id": "swiftype-search-vue",
-    "name": "Swiftype Search",
-    "description": "JavaScript client for Swiftype search engine with Vue.js integration.",
-    "category": "Search",
-    "packageName": "swiftype",
-    "githubUrl": "https://github.com/swiftype/swiftype-js",
-    "npmUrl": "https://www.npmjs.com/package/swiftype",
-    "documentationUrl": "https://swiftype.com/documentation",
-    "author": "Swiftype",
-    "tags": ["search", "swiftype", "site-search", "enterprise", "vue3", "community"],
-    "type": "community"
-  },
-  {
-    "id": "lunr-vue",
-    "name": "Lunr.js",
-    "description": "Client-side full-text search library for JavaScript applications including Vue.js.",
-    "category": "Search",
-    "packageName": "lunr",
-    "githubUrl": "https://github.com/olivernn/lunr.js",
-    "npmUrl": "https://www.npmjs.com/package/lunr",
-    "documentationUrl": "https://lunrjs.com/",
-    "author": "Oliver Nightingale",
-    "tags": ["search", "lunr", "client-side", "full-text", "vue3", "community"],
-    "type": "community"
-  },
+
+
+
+
   {
     "id": "vue-search-panel",
     "name": "Vue Search Panel",
@@ -1239,17 +1059,5 @@ export const pluginsData: VuePlugin[] = [
     "tags": ["search", "ui-component", "panel", "vue3", "community"],
     "type": "community"
   },
-  {
-    "id": "flexsearch-vue",
-    "name": "FlexSearch",
-    "description": "Ultra-fast full-text search library for Vue.js applications.",
-    "category": "Search",
-    "packageName": "flexsearch",
-    "githubUrl": "https://github.com/nextapps-de/flexsearch",
-    "npmUrl": "https://www.npmjs.com/package/flexsearch",
-    "documentationUrl": "https://github.com/nextapps-de/flexsearch#readme",
-    "author": "NextApps",
-    "tags": ["search", "flexsearch", "full-text", "fast", "vue3", "community"],
-    "type": "community"
-  }
+
 ]

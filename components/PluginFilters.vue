@@ -1,11 +1,11 @@
 <template>
-  <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-8">
+  <div class="bg-white rounded-lg shadow-sm border border-slate-200 p-6 mb-8">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
       <!-- Search -->
       <div>
-        <label for="search" class="block text-sm font-medium text-gray-700 mb-2">Search</label>
+        <label for="search" class="block text-sm font-semibold text-[#2c3e50] mb-2">Search</label>
         <div class="relative">
-          <Icon name="lucide:search" class="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+          <Icon name="lucide:search" class="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
           <input
             id="search"
             v-model="localFilters.search"
@@ -19,7 +19,7 @@
       
       <!-- Category -->
       <div>
-        <label for="category" class="block text-sm font-medium text-gray-700 mb-2">Category</label>
+        <label for="category" class="block text-sm font-semibold text-[#2c3e50] mb-2">Category</label>
         <select
           id="category"
           v-model="localFilters.category"
@@ -35,7 +35,7 @@
       
       <!-- Type -->
       <div>
-        <label for="type" class="block text-sm font-medium text-gray-700 mb-2">Type</label>
+        <label for="type" class="block text-sm font-semibold text-[#2c3e50] mb-2">Type</label>
         <select
           id="type"
           v-model="localFilters.type"
@@ -51,7 +51,7 @@
       
       <!-- Sort -->
       <div>
-        <label for="sort" class="block text-sm font-medium text-gray-700 mb-2">Sort By</label>
+        <label for="sort" class="block text-sm font-semibold text-[#2c3e50] mb-2">Sort By</label>
         <select
           id="sort"
           v-model="localFilters.sort"
@@ -65,14 +65,14 @@
       
       <!-- View Toggle -->
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">View</label>
-        <div class="flex rounded-lg border border-gray-200 p-1">
+        <label class="block text-sm font-semibold text-[#2c3e50] mb-2">View</label>
+        <div class="flex rounded-lg border border-slate-200 p-1">
           <button
             :class="[
               'flex-1 flex items-center justify-center px-3 py-2 rounded-md text-sm font-medium transition-all',
               viewMode === 'grid' 
-                ? 'bg-emerald-500 text-white shadow-sm' 
-                : 'text-gray-500 hover:text-gray-700'
+                ? 'bg-[#4fc08d] text-white shadow-sm' 
+                : 'text-slate-500 hover:text-slate-700'
             ]"
             @click="$emit('update:viewMode', 'grid')"
           >
@@ -83,8 +83,8 @@
             :class="[
               'flex-1 flex items-center justify-center px-3 py-2 rounded-md text-sm font-medium transition-all',
               viewMode === 'list' 
-                ? 'bg-emerald-500 text-white shadow-sm' 
-                : 'text-gray-500 hover:text-gray-700'
+                ? 'bg-[#4fc08d] text-white shadow-sm' 
+                : 'text-slate-500 hover:text-slate-700'
             ]"
             @click="$emit('update:viewMode', 'list')"
           >
@@ -97,10 +97,10 @@
     
     <!-- Active Filters -->
     <div v-if="hasActiveFilters" class="flex flex-wrap items-center gap-2">
-      <span class="text-sm font-medium text-gray-700">Active filters:</span>
+      <span class="text-sm font-semibold text-[#2c3e50]">Active filters:</span>
       <button
         v-if="localFilters.search"
-        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800"
+        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#4fc08d]/10 text-[#4fc08d] border border-[#4fc08d]/20"
         @click="clearSearch"
       >
         Search: "{{ localFilters.search }}"
@@ -108,7 +108,7 @@
       </button>
       <button
         v-if="localFilters.category"
-        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800"
+        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-50 text-blue-700 border border-blue-200"
         @click="clearCategory"
       >
         {{ localFilters.category }}
@@ -116,14 +116,14 @@
       </button>
       <button
         v-if="localFilters.type"
-        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800"
+        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-50 text-purple-700 border border-purple-200"
         @click="clearType"
       >
         {{ localFilters.type.charAt(0).toUpperCase() + localFilters.type.slice(1) }}
         <Icon name="lucide:x" class="h-3 w-3 ml-1" />
       </button>
       <button
-        class="text-xs text-gray-500 hover:text-gray-700 underline"
+        class="text-xs text-slate-500 hover:text-[#4fc08d] underline transition-colors"
         @click="clearAllFilters"
       >
         Clear all

@@ -4,32 +4,54 @@
 
 :root {
   --vue-green: #4fc08d;
+  --vue-green-dark: #42b883;
   --vue-dark: #2c3e50;
-  --monterail-primary: #00d4aa;
-  --monterail-secondary: #667eea;
-  --monterail-accent: #f093fb;
+  --vue-light-green: #f0f9ff;
+  --vue-border: #e5e7eb;
+  --vue-bg: #ffffff;
+  --vue-bg-secondary: #f8fafc;
 }
 
 @layer base {
   body {
-    @apply bg-gray-50 text-gray-900;
+    @apply bg-white text-slate-800;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-medium px-4 py-2 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md;
+    @apply bg-[#4fc08d] hover:bg-[#42b883] text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md;
   }
 
   .btn-secondary {
-    @apply bg-white hover:bg-gray-50 text-gray-700 font-medium px-4 py-2 rounded-lg border border-gray-200 transition-all duration-200 shadow-sm hover:shadow-md;
+    @apply bg-white hover:bg-slate-50 text-slate-700 font-semibold px-6 py-3 rounded-lg border border-slate-200 transition-all duration-200 shadow-sm hover:shadow-md;
   }
 
   .card {
-    @apply bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100;
+    @apply bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-slate-200;
   }
 
   .input-field {
-    @apply w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all duration-200 bg-white;
+    @apply w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-[#4fc08d] focus:ring-2 focus:ring-[#4fc08d]/20 transition-all duration-200 bg-white;
   }
+}
+
+/* Vue.js themed utilities */
+.vue-gradient {
+  background: linear-gradient(135deg, #4fc08d 0%, #42b883 100%);
+}
+
+.vue-gradient-text {
+  background: linear-gradient(135deg, #4fc08d 0%, #42b883 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.vue-shadow {
+  box-shadow: 0 4px 6px -1px rgba(79, 192, 141, 0.1), 0 2px 4px -1px rgba(79, 192, 141, 0.06);
+}
+
+.vue-shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(79, 192, 141, 0.1), 0 4px 6px -2px rgba(79, 192, 141, 0.05);
 }

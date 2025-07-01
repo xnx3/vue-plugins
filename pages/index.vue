@@ -2,10 +2,10 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <!-- Hero Section -->
     <div class="text-center mb-12">
-      <h1 class="text-4xl font-bold text-gray-900 mb-4">
+      <h1 class="text-5xl font-bold text-[#2c3e50] mb-6">
         Vue.js Plugins Collection
       </h1>
-      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+      <p class="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
         Discover and explore the best Vue.js plugins to supercharge your applications. 
         Curated by the community, maintained by developers.
       </p>
@@ -24,22 +24,22 @@
     <!-- Loading State -->
     <div v-if="pending" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <div v-for="i in 6" :key="i" class="card p-6 animate-pulse">
-        <div class="h-4 bg-gray-200 rounded w-3/4 mb-4"/>
-        <div class="h-3 bg-gray-200 rounded w-full mb-2"/>
-        <div class="h-3 bg-gray-200 rounded w-2/3 mb-4"/>
+        <div class="h-4 bg-slate-200 rounded w-3/4 mb-4"/>
+        <div class="h-3 bg-slate-200 rounded w-full mb-2"/>
+        <div class="h-3 bg-slate-200 rounded w-2/3 mb-4"/>
         <div class="flex space-x-2 mb-4">
-          <div class="h-6 bg-gray-200 rounded-full w-16"/>
-          <div class="h-6 bg-gray-200 rounded-full w-20"/>
+          <div class="h-6 bg-slate-200 rounded-full w-16"/>
+          <div class="h-6 bg-slate-200 rounded-full w-20"/>
         </div>
-        <div class="h-3 bg-gray-200 rounded w-1/2"/>
+        <div class="h-3 bg-slate-200 rounded w-1/2"/>
       </div>
     </div>
     
     <!-- Error State -->
     <div v-else-if="error" class="text-center py-12">
       <Icon name="lucide:alert-circle" class="h-16 w-16 text-red-500 mx-auto mb-4" />
-      <h3 class="text-lg font-medium text-gray-900 mb-2">Failed to load plugins</h3>
-      <p class="text-gray-600 mb-4">{{ error.message }}</p>
+      <h3 class="text-lg font-semibold text-[#2c3e50] mb-2">Failed to load plugins</h3>
+      <p class="text-slate-600 mb-4">{{ error.message }}</p>
       <button class="btn-primary" @click="refresh()">
         Try Again
       </button>
@@ -49,7 +49,7 @@
     <div v-else-if="sortedData">
       <!-- Results Header -->
       <div class="flex items-center justify-between mb-6">
-        <p class="text-sm text-gray-600">
+        <p class="text-sm text-slate-600">
           {{ sortedData.total }} plugin{{ sortedData.total !== 1 ? 's' : '' }} found
         </p>
       </div>

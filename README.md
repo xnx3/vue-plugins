@@ -14,19 +14,6 @@ A modern, responsive web application for discovering and exploring Vue.js plugin
 - 📄 **Detailed Plugin Pages** - Comprehensive information for each plugin
 - 🚀 **Batch GitHub API Requests** - Optimized API calls with intelligent caching
 
-## Tech Stack
-
-- **Framework**: Nuxt 3 (v3.17.5+)
-- **Language**: TypeScript
-- **Package Manager**: pnpm (v9.14.2+)
-- **Styling**: Tailwind CSS with Tailwind Animate
-- **UI Components**: Reka UI
-- **Icons**: Nuxt Icon with Lucide Icons
-- **State Management**: Vue 3 Composition API with VueUse
-- **HTTP Client**: ofetch
-- **API**: Nuxt Server API Routes
-- **Color Mode**: Dark/Light theme support
-
 ## Getting Started
 
 ### Prerequisites
@@ -69,19 +56,6 @@ pnpm dev
 
 5. **Open your browser:**
    - Navigate to [http://localhost:3000](http://localhost:3000)
-
-### Production Build
-
-```bash
-# Build for production
-pnpm build
-
-# Preview production build locally
-pnpm preview
-
-# Generate static site (optional)
-pnpm start
-```
 
 ## API Endpoints
 
@@ -220,41 +194,15 @@ Content-Type: application/json
 }
 ```
 
-## Adding New Plugins
+### Production Build
 
-To add a new plugin to the collection:
+```bash
+# Build for production
+pnpm build
 
-1. **Edit the data file**: `/server/data/plugins.ts`
-2. **Add plugin object** following the `VuePlugin` interface:
+# Preview production build locally
+pnpm preview
 
-```typescript
-{
-  "id": "unique-plugin-id",
-  "name": "Plugin Name",
-  "description": "Brief description of the plugin",
-  "category": "Category Name", // Must match existing categories
-  "packageName": "npm-package-name",
-  "githubUrl": "https://github.com/owner/repo",
-  "npmUrl": "https://www.npmjs.com/package/npm-package-name", // optional
-  "documentationUrl": "https://plugin-docs.com", // optional
-  "author": "Author Name",
-  "tags": ["tag1", "tag2", "tag3"],
-  "type": "official" | "community"
-}
+# Generate static site (optional)
+pnpm start
 ```
-
-3. **Update categories** in `/server/api/categories.get.ts` if adding a new category
-
-### Plugin Categories
-
-Available categories (defined in `/server/api/categories.get.ts`):
-- Routing
-- State Management
-- Utilities
-- Internationalization
-- UI Framework
-- Animation
-- Forms
-- Testing
-- Development Tools
-- Data Fetching

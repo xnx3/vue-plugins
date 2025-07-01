@@ -4,7 +4,7 @@
     <div class="prose max-w-none dark:prose-invert">
       <ClientOnly>
         <!-- eslint-disable-next-line vue/no-v-html -->
-        <div v-html="renderedMarkdown" />
+        <div class="overflow-auto" v-html="renderedMarkdown"/>
         <template #fallback>
           <div class="animate-pulse">
             <div class="h-4 bg-slate-200 dark:bg-slate-700 rounded w-3/4 mb-2" />

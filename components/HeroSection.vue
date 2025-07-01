@@ -1,5 +1,5 @@
 <template>
-  <div class="relative text-center overflow-hidden min-h-[400px] flex flex-col justify-center py-16">
+  <div class="relative text-center overflow-hidden min-h-[400px] flex flex-col justify-center">
     <!-- Background Animation -->
     <div class="absolute inset-0 z-0">
       <!-- Floating particles -->

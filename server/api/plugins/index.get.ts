@@ -88,7 +88,7 @@ async function fetchGitHubStars(githubUrls: string[]): Promise<Record<string, nu
 export default defineEventHandler(async (event) => {
   const query = getQuery(event) as Partial<FilterOptions>
 
-  const { search = "", category = "", type = "", sort = "stars-desc", page = 1, limit = 12 } = query
+  const { search = "", category = "", sort = "stars-desc", page = 1, limit = 12 } = query
 
   const filteredPlugins = [...pluginsData]
 
@@ -116,11 +116,6 @@ export default defineEventHandler(async (event) => {
   // Apply category filter
   if (category) {
     pluginsWithStars.splice(0, pluginsWithStars.length, ...pluginsWithStars.filter((plugin) => plugin.category === category))
-  }
-
-  // Apply type filter
-  if (type) {
-    pluginsWithStars.splice(0, pluginsWithStars.length, ...pluginsWithStars.filter((plugin) => plugin.type === type))
   }
 
   // Apply sorting

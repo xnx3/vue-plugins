@@ -40,7 +40,6 @@
     <PluginFilters
       :filters="filters"
       :categories="categories || []"
-      :types="types || []"
       :view-mode="viewMode"
       @update:filters="updateFilters"
       @update:view-mode="viewMode = $event"
@@ -136,7 +135,6 @@ const viewMode = ref<'grid' | 'list'>('grid')
 const filters = ref<FilterOptions>({
   search: '',
   category: '',
-  type: '',
   sort: 'stars-desc',
   page: 1,
   limit: 12
@@ -164,9 +162,8 @@ const particles = ref(
   })
 )
 
-// Fetch categories and types
+// Fetch categories
 const { data: categories } = await useFetch<string[]>('/api/categories')
-const { data: types } = await useFetch<string[]>('/api/types')
 
 // Fetch plugins with reactivity
 const { data, pending, error, refresh } = await useFetch<PaginatedResponse<VuePluginWithStars>>('/api/plugins', {
@@ -220,8 +217,7 @@ watch(filters, (newFilters) => {
   
   if (newFilters.search) query.search = newFilters.search
   if (newFilters.category) query.category = newFilters.category
-  if (newFilters.type) query.type = newFilters.type
-  if (newFilters.sort !== 'name-asc') query.sort = newFilters.sort
+  if (newFilters.sort !== 'stars-desc') query.sort = newFilters.sort
   if (newFilters.page > 1) query.page = newFilters.page.toString()
   
   router.push({ query })
@@ -231,7 +227,6 @@ watch(filters, (newFilters) => {
 onMounted(() => {
   if (route.query.search) filters.value.search = route.query.search as string
   if (route.query.category) filters.value.category = route.query.category as string
-  if (route.query.type) filters.value.type = route.query.type as string
   if (route.query.sort) filters.value.sort = route.query.sort as FilterOptions['sort']
   if (route.query.page) filters.value.page = parseInt(route.query.page as string)
 })

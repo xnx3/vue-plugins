@@ -1,3 +1,6 @@
+/* Import highlight.js styles */
+@import 'highlight.js/styles/github.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -76,4 +79,177 @@
     --tw-prose-th-borders: rgb(55 65 81);
     --tw-prose-td-borders: rgb(55 65 81);
   }
+}
+
+/* Custom syntax highlighting styles */
+.prose .hljs {
+  @apply rounded-lg border border-slate-200 dark:border-slate-600 text-sm;
+  background: #f8f9fa !important;
+  color: #24292e !important;
+}
+
+.dark .prose .hljs {
+  background: #1e293b !important;
+  color: #e2e8f0 !important;
+}
+
+.prose .hljs-keyword,
+.prose .hljs-selector-tag,
+.prose .hljs-literal,
+.prose .hljs-doctag,
+.prose .hljs-title,
+.prose .hljs-section,
+.prose .hljs-type,
+.prose .hljs-name,
+.prose .hljs-strong {
+  color: #d73a49 !important;
+}
+
+.dark .prose .hljs-keyword,
+.dark .prose .hljs-selector-tag,
+.dark .prose .hljs-literal,
+.dark .prose .hljs-doctag,
+.dark .prose .hljs-title,
+.dark .prose .hljs-section,
+.dark .prose .hljs-type,
+.dark .prose .hljs-name,
+.dark .prose .hljs-strong {
+  color: #f97316 !important;
+}
+
+.prose .hljs-string,
+.prose .hljs-title.function_,
+.prose .hljs-title.class_,
+.prose .hljs-title.class_.inherited__,
+.prose .hljs-attribute,
+.prose .hljs-symbol,
+.prose .hljs-bullet,
+.prose .hljs-addition {
+  color: #22863a !important;
+}
+
+.dark .prose .hljs-string,
+.dark .prose .hljs-title.function_,
+.dark .prose .hljs-title.class_,
+.dark .prose .hljs-title.class_.inherited__,
+.dark .prose .hljs-attribute,
+.dark .prose .hljs-symbol,
+.dark .prose .hljs-bullet,
+.dark .prose .hljs-addition {
+  color: #10b981 !important;
+}
+
+.prose .hljs-comment,
+.prose .hljs-quote,
+.prose .hljs-deletion,
+.prose .hljs-meta {
+  color: #6a737d !important;
+}
+
+.dark .prose .hljs-comment,
+.dark .prose .hljs-quote,
+.dark .prose .hljs-deletion,
+.dark .prose .hljs-meta {
+  color: #64748b !important;
+}
+
+.prose .hljs-number,
+.prose .hljs-regexp,
+.prose .hljs-variable,
+.prose .hljs-template-variable,
+.prose .hljs-tag .hljs-attr,
+.prose .hljs-tag .hljs-name,
+.prose .hljs-tag .hljs-title {
+  color: #005cc5 !important;
+}
+
+.dark .prose .hljs-number,
+.dark .prose .hljs-regexp,
+.dark .prose .hljs-variable,
+.dark .prose .hljs-template-variable,
+.dark .prose .hljs-tag .hljs-attr,
+.dark .prose .hljs-tag .hljs-name,
+.dark .prose .hljs-tag .hljs-title {
+  color: #3b82f6 !important;
+}
+
+/* Prose heading styles */
+.prose h1 {
+  @apply text-3xl font-bold text-[#2c3e50] dark:text-slate-100 mt-8 mb-4 leading-tight;
+}
+
+.prose h2 {
+  @apply text-2xl font-semibold text-[#2c3e50] dark:text-slate-100 mt-6 mb-3 leading-snug;
+}
+
+.prose h3 {
+  @apply text-xl font-semibold text-[#2c3e50] dark:text-slate-100 mt-4 mb-2 leading-snug;
+}
+
+.prose h4 {
+  @apply text-lg font-medium text-[#2c3e50] dark:text-slate-100 mt-3 mb-2;
+}
+
+.prose h5 {
+  @apply text-base font-medium text-[#2c3e50] dark:text-slate-100 mt-3 mb-2;
+}
+
+.prose h6 {
+  @apply text-sm font-medium text-[#2c3e50] dark:text-slate-100 mt-3 mb-2;
+}
+
+.prose p {
+  @apply mb-4 text-slate-700 dark:text-slate-300 leading-relaxed;
+}
+
+.prose a {
+  @apply text-[#4fc08d] hover:text-[#42b883] underline transition-colors;
+}
+
+.prose strong {
+  @apply font-semibold text-[#2c3e50] dark:text-slate-100;
+}
+
+.prose em {
+  @apply italic;
+}
+
+.prose code {
+  @apply px-1 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-sm font-mono text-[#2c3e50] dark:text-slate-200;
+}
+
+.prose ul {
+  @apply mb-4 pl-6 space-y-2;
+}
+
+.prose ol {
+  @apply mb-4 pl-6 space-y-2;
+}
+
+.prose li {
+  @apply text-slate-700 dark:text-slate-300;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-[#4fc08d] pl-4 py-2 bg-slate-50 dark:bg-slate-800 rounded-r;
+}
+
+.prose pre {
+  @apply mb-4 overflow-x-auto;
+}
+
+.prose hr {
+  @apply my-8 border-slate-200 dark:border-slate-600;
+}
+
+.prose table {
+  @apply w-full border-collapse mb-4;
+}
+
+.prose th {
+  @apply border border-slate-300 dark:border-slate-600 px-3 py-2 bg-slate-50 dark:bg-slate-700 font-semibold text-left;
+}
+
+.prose td {
+  @apply border border-slate-300 dark:border-slate-600 px-3 py-2;
 }

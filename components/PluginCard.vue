@@ -1,5 +1,5 @@
 <template>
-  <div class="card p-6 hover:scale-[1.02] cursor-pointer hover:border-[#4fc08d]/30 transition-all flex flex-col h-full" @click="navigateToPlugin">
+  <NuxtLink :to="`/plugins/${plugin.id}`" class="card p-6 hover:scale-[1.02] cursor-pointer hover:border-[#4fc08d]/30 transition-all flex flex-col h-full block">
     <div class="flex-1">
       <h3 class="text-lg font-semibold text-[#2c3e50] dark:text-slate-100 mb-2">{{ plugin.name }}</h3>
       <p class="text-slate-600 dark:text-slate-300 text-sm line-clamp-2 mb-10">{{ plugin.description }}</p>
@@ -29,22 +29,17 @@
         </div>
       </div>
     </div>
-  </div>
+  </NuxtLink>
 </template>
 
 <script setup lang="ts">
 import type { VuePluginWithStarsAndDownloads } from '~/types'
-import { navigateTo } from '#app'
 
 interface Props {
   plugin: VuePluginWithStarsAndDownloads
 }
 
-const props = defineProps<Props>()
-
-const navigateToPlugin = () => {
-  navigateTo(`/plugins/${props.plugin.id}`)
-}
+defineProps<Props>()
 
 const formatNumber = (count: number): string => {
   if (count >= 1000000) {

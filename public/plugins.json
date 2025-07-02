@@ -18,6 +18,28 @@
     "type": "official"
   },
   {
+    "id": "pinia-plugin-persistedstate",
+    "name": "Pinia Plugin Persistedstate",
+    "description": "Configurable persistence and rehydration of Pinia stores with localStorage, sessionStorage and more.",
+    "category": "State Management",
+    "packageName": "pinia-plugin-persistedstate",
+    "githubUrl": "https://github.com/prazdevs/pinia-plugin-persistedstate",
+    "npmUrl": "https://www.npmjs.com/package/pinia-plugin-persistedstate",
+    "documentationUrl": "https://prazdevs.github.io/pinia-plugin-persistedstate/",
+    "author": "Sacha Bouillez (PraZ)",
+    "tags": [
+      "pinia",
+      "persistence",
+      "state-management",
+      "localStorage",
+      "sessionStorage",
+      "nuxt",
+      "vue3",
+      "community"
+    ],
+    "type": "community"
+  },
+  {
     "id": "vue-router",
     "name": "Vue Router",
     "description": "The official routing library for building SPA navigation in Vue apps.",
@@ -31,6 +53,88 @@
       "official",
       "spa",
       "routing"
+    ],
+    "type": "official"
+  },
+  {
+    "id": "unplugin-vue-router",
+    "name": "unplugin-vue-router",
+    "description": "Automatic file based routing in Vue with TypeScript support. Next generation typed routing for Vue Router.",
+    "category": "Routing",
+    "packageName": "unplugin-vue-router",
+    "githubUrl": "https://github.com/posva/unplugin-vue-router",
+    "npmUrl": "https://www.npmjs.com/package/unplugin-vue-router",
+    "documentationUrl": "https://uvr.esm.is/",
+    "author": "Eduardo San Martin Morote (posva)",
+    "tags": [
+      "routing",
+      "typescript",
+      "file-based",
+      "vue-router",
+      "build-time",
+      "vite",
+      "webpack",
+      "rollup",
+      "community"
+    ],
+    "type": "community"
+  },
+  {
+    "id": "vue-test-utils",
+    "name": "Vue Test Utils",
+    "description": "Official testing utilities for Vue 3 components.",
+    "category": "Testing",
+    "packageName": "@vue/test-utils",
+    "githubUrl": "https://github.com/vuejs/test-utils",
+    "npmUrl": "https://www.npmjs.com/package/@vue/test-utils",
+    "documentationUrl": "https://test-utils.vuejs.org/",
+    "author": "Vue.js Team",
+    "tags": [
+      "testing",
+      "unit-tests",
+      "official",
+      "vue3"
+    ],
+    "type": "official"
+  },
+  {
+    "id": "vuex",
+    "name": "Vuex",
+    "description": "Official state management pattern and library for Vue.js applications with centralized store.",
+    "category": "State Management",
+    "packageName": "vuex",
+    "githubUrl": "https://github.com/vuejs/vuex",
+    "npmUrl": "https://www.npmjs.com/package/vuex",
+    "documentationUrl": "https://vuex.vuejs.org/",
+    "author": "Vue.js Team",
+    "tags": [
+      "state-management",
+      "store",
+      "flux",
+      "official",
+      "vue2",
+      "vue3"
+    ],
+    "type": "official"
+  },
+  {
+    "id": "vuefire",
+    "name": "VueFire",
+    "description": "Official Firebase bindings for Vue.js with idiomatic composables for realtime data.",
+    "category": "Data Fetching",
+    "packageName": "vuefire",
+    "githubUrl": "https://github.com/vuejs/vuefire",
+    "npmUrl": "https://www.npmjs.com/package/vuefire",
+    "documentationUrl": "https://vuefire.vuejs.org/",
+    "author": "Eduardo San Martin Morote & Vue.js Team",
+    "tags": [
+      "firebase",
+      "realtime",
+      "database",
+      "firestore",
+      "official",
+      "vue3",
+      "composition-api"
     ],
     "type": "official"
   },
@@ -163,6 +267,51 @@
     "type": "community"
   },
   {
+    "id": "sentry-vue",
+    "name": "Sentry Vue",
+    "description": "Official Sentry SDK for Vue.js applications with error monitoring, performance tracking, and session replay.",
+    "category": "Utilities",
+    "packageName": "@sentry/vue",
+    "githubUrl": "https://github.com/getsentry/sentry-javascript/tree/master/packages/vue",
+    "npmUrl": "https://www.npmjs.com/package/@sentry/vue",
+    "documentationUrl": "https://docs.sentry.io/platforms/javascript/guides/vue/",
+    "author": "Sentry Team",
+    "tags": [
+      "error-monitoring",
+      "performance",
+      "tracking",
+      "debugging",
+      "logging",
+      "monitoring",
+      "vue2",
+      "vue3",
+      "community"
+    ],
+    "type": "community"
+  },
+  {
+    "id": "portal-vue",
+    "name": "Portal Vue",
+    "description": "Component for Vue 3 to render DOM outside of a component, anywhere in the document using portals.",
+    "category": "Utilities",
+    "packageName": "portal-vue",
+    "githubUrl": "https://github.com/LinusBorg/portal-vue",
+    "npmUrl": "https://www.npmjs.com/package/portal-vue",
+    "documentationUrl": "https://portal-vue.linusb.org/",
+    "author": "Linus Borg",
+    "tags": [
+      "portal",
+      "teleport",
+      "dom-rendering",
+      "component-rendering",
+      "overlays",
+      "modals",
+      "vue3",
+      "community"
+    ],
+    "type": "community"
+  },
+  {
     "id": "vuetify",
     "name": "Vuetify",
     "description": "Material Design UI component framework; currently supporting Vue 2, v3 in beta.",
@@ -289,6 +438,49 @@
       "community"
     ],
     "type": "community"
+  },
+  {
+    "id": "vite-plugin-vue-devtools",
+    "name": "Vite Plugin Vue DevTools",
+    "description": "Vite plugin to enhance Vue developer experience with integrated DevTools.",
+    "category": "Development Tools",
+    "packageName": "vite-plugin-vue-devtools",
+    "githubUrl": "https://github.com/vuejs/devtools",
+    "npmUrl": "https://www.npmjs.com/package/vite-plugin-vue-devtools",
+    "documentationUrl": "https://devtools.vuejs.org/",
+    "author": "webfansplz & Vue.js Team",
+    "tags": [
+      "devtools",
+      "debugging",
+      "vite-plugin",
+      "development",
+      "official",
+      "vue3"
+    ],
+    "type": "official"
+  },
+  {
+    "id": "eslint-plugin-vue",
+    "name": "ESLint Plugin Vue",
+    "description": "Official ESLint plugin for Vue.js to lint templates, scripts, and Vue directives with comprehensive rule sets.",
+    "category": "Development Tools",
+    "packageName": "eslint-plugin-vue",
+    "githubUrl": "https://github.com/vuejs/eslint-plugin-vue",
+    "npmUrl": "https://www.npmjs.com/package/eslint-plugin-vue",
+    "documentationUrl": "https://eslint.vuejs.org/",
+    "author": "Vue.js Team",
+    "tags": [
+      "eslint",
+      "linting",
+      "code-quality",
+      "static-analysis",
+      "vue-directives",
+      "templates",
+      "official",
+      "vue2",
+      "vue3"
+    ],
+    "type": "official"
   },
   {
     "id": "tanstack-query-vue",
@@ -548,25 +740,6 @@
     "type": "community"
   },
   {
-    "id": "vue-use-gesture",
-    "name": "Vue Use Gesture",
-    "description": "Vue 3 composables for gesture recognition (drag, pinch, swipe).",
-    "category": "UI Framework",
-    "packageName": "@vueuse/gesture",
-    "githubUrl": "https://github.com/vueuse/gesture",
-    "npmUrl": "https://www.npmjs.com/package/@vueuse/gesture",
-    "documentationUrl": "https://gesture.vueuse.org/",
-    "author": "VueUse Team",
-    "tags": [
-      "gestures",
-      "touch",
-      "interaction",
-      "vue3",
-      "community"
-    ],
-    "type": "community"
-  },
-  {
     "id": "vue-color-kit",
     "name": "Vue Color Kit",
     "description": "Vue 3 color picker component with multiple color formats support.",
@@ -681,25 +854,6 @@
     "type": "community"
   },
   {
-    "id": "vue-use-sound",
-    "name": "Vue Use Sound",
-    "description": "Vue 3 composable for playing sound effects with Web Audio API.",
-    "category": "Utilities",
-    "packageName": "vue-use-sound",
-    "githubUrl": "https://github.com/vueuse/sound",
-    "npmUrl": "https://www.npmjs.com/package/vue-use-sound",
-    "documentationUrl": "https://sound.vueuse.org/",
-    "author": "VueUse Team",
-    "tags": [
-      "audio",
-      "sound",
-      "web-audio",
-      "vue3",
-      "community"
-    ],
-    "type": "community"
-  },
-  {
     "id": "vue-meta",
     "name": "Vue Meta",
     "description": "Manage HTML metadata in Vue 3 applications for SEO and social sharing.",
@@ -756,24 +910,6 @@
       "community"
     ],
     "type": "community"
-  },
-  {
-    "id": "vue-test-utils",
-    "name": "Vue Test Utils",
-    "description": "Official testing utilities for Vue 3 components.",
-    "category": "Testing",
-    "packageName": "@vue/test-utils",
-    "githubUrl": "https://github.com/vuejs/test-utils",
-    "npmUrl": "https://www.npmjs.com/package/@vue/test-utils",
-    "documentationUrl": "https://test-utils.vuejs.org/",
-    "author": "Vue.js Team",
-    "tags": [
-      "testing",
-      "unit-tests",
-      "official",
-      "vue3"
-    ],
-    "type": "official"
   },
   {
     "id": "vue-apollo",

@@ -79,7 +79,7 @@
                 </div>
                 <div>
                   <p class="text-sm font-medium text-gray-900 dark:text-slate-100">Fork the Repository</p>
-                  <p class="text-sm text-gray-500 dark:text-slate-400">Fork the vue-plugins repository on GitHub</p>
+                  <p class="text-sm text-gray-500 dark:text-slate-400">Fork the <code class="bg-gray-100 dark:bg-slate-700 px-1 rounded">vue-plugins</code> repository on GitHub</p>
                 </div>
               </div>
               
@@ -89,7 +89,7 @@
                 </div>
                 <div>
                   <p class="text-sm font-medium text-gray-900 dark:text-slate-100">Add Your Plugin</p>
-                  <p class="text-sm text-gray-500 dark:text-slate-400 mb-2">Add your plugin information to <code class="bg-gray-100 dark:bg-slate-700 px-1 rounded">server/data/plugins.ts</code></p>
+                  <p class="text-sm text-gray-500 dark:text-slate-400 mb-2">Add your plugin information to <code class="bg-gray-100 dark:bg-slate-700 px-1 rounded">public/plugins.json</code></p>
                   <details class="text-xs">
                     <summary class="cursor-pointer text-[#4fc08d] hover:text-[#42b883] font-medium">Show example structure</summary>
                     <pre class="mt-2 p-2 bg-gray-50 dark:bg-slate-700 rounded text-xs overflow-x-auto"><code>{

@@ -1,18 +1,20 @@
 # Vue.js Plugins Collection
 
-A modern, responsive web application for discovering and exploring Vue.js plugins. Built with Nuxt 3, TypeScript, and Tailwind CSS.
+A modern, responsive web application for discovering and exploring Vue.js plugins. Built with Nuxt 3, TypeScript, Tailwind CSS, and Reka UI components.
 
 ## Features
 
 - 🔍 **Advanced Search & Filtering** - Find plugins by name, description, category, and tags
 - 📱 **Responsive Design** - Mobile-first design that works on all devices
-- 🎨 **Modern UI** - Clean, minimalist interface with Vue.js and Monterail branding
-- ⚡ **Fast Performance** - Server-side rendering with Nuxt 3
-- 🔗 **GitHub Integration** - Real-time stats from GitHub API with caching
+- 🎨 **Modern UI** - Clean, minimalist interface with Vue.js branding using Reka UI
+- ⚡ **Fast Performance** - Server-side rendering and static generation with Nuxt 3
+- 🔗 **GitHub Integration** - Real-time stats from GitHub API
 - 📊 **Plugin Analytics** - Stars, downloads, forks, and issue tracking
 - 🏷️ **Categorization** - Organized by plugin categories and types
-- 📄 **Detailed Plugin Pages** - Comprehensive information for each plugin
-- 🚀 **Batch GitHub API Requests** - Optimized API calls with intelligent caching
+- 📄 **Detailed Plugin Pages** - Comprehensive information with README rendering
+- 🌙 **Dark Mode Support** - System preference aware color mode
+- � **Markdown Rendering** - Rich documentation display with syntax highlighting
+- 🎯 **SEO Optimized** - Pre-rendered routes for better search engine visibility
 
 ## Getting Started
 
@@ -36,7 +38,7 @@ cd vue-plugins
 pnpm install
 ```
 
-3. **Set up environment variables:**
+3. **Set up environment variables (optional):**
 ```bash
 cp .env.example .env
 ```
@@ -57,142 +59,7 @@ pnpm dev
 5. **Open your browser:**
    - Navigate to [http://localhost:3000](http://localhost:3000)
 
-## API Endpoints
-
-The application provides a RESTful API with the following endpoints:
-
-### Plugin Endpoints
-
-#### `GET /api/plugins`
-Get a paginated list of plugins with optional filtering and sorting.
-
-**Query Parameters:**
-- `search` (string, optional) - Search in plugin name, description, and tags
-- `category` (string, optional) - Filter by category (see categories endpoint)
-- `type` (string, optional) - Filter by type: `official` or `community`
-- `sort` (string, optional) - Sort order: `name-asc` (default), `name-desc`
-- `page` (number, optional) - Page number (default: 1)
-- `limit` (number, optional) - Items per page (default: 12)
-
-**Response:**
-```typescript
-{
-  data: VuePlugin[],
-  total: number,
-  page: number,
-  limit: number,
-  totalPages: number
-}
-```
-
-**Example:**
-```bash
-GET /api/plugins?search=router&category=Routing&page=1&limit=12
-```
-
-#### `GET /api/plugins/[id]`
-Get detailed information about a specific plugin, including GitHub statistics.
-
-**Parameters:**
-- `id` (string) - Plugin ID
-
-**Response:**
-```typescript
-{
-  // All VuePlugin properties plus:
-  stars: number,
-  forks: number,
-  issues: number,
-  lastCommit: string,
-  license: string,
-  readme?: string
-}
-```
-
-**Example:**
-```bash
-GET /api/plugins/pinia
-```
-
-### Metadata Endpoints
-
-#### `GET /api/categories`
-Get all available plugin categories.
-
-**Response:**
-```typescript
-string[] // Array of category names
-```
-
-**Example Response:**
-```json
-[
-  "Routing",
-  "State Management", 
-  "Utilities",
-  "Internationalization",
-  "UI Framework",
-  "Animation",
-  "Forms",
-  "Testing",
-  "Development Tools",
-  "Data Fetching"
-]
-```
-
-#### `GET /api/types`
-Get all available plugin types.
-
-**Response:**
-```typescript
-string[] // Array of type names
-```
-
-**Example Response:**
-```json
-["official", "community"]
-```
-
-### GitHub Integration
-
-#### `POST /api/github/stars`
-Batch fetch GitHub stars for multiple repositories with intelligent caching.
-
-**Request Body:**
-```typescript
-{
-  githubUrls: string[]
-}
-```
-
-**Response:**
-```typescript
-{
-  [githubUrl: string]: {
-    stars: number,
-    error?: string
-  }
-}
-```
-
-**Features:**
-- 1-hour cache TTL per repository
-- Batch processing for efficient API usage
-- Error handling for invalid/unavailable repositories
-- Automatic rate limiting respect
-
-**Example:**
-```bash
-POST /api/github/stars
-Content-Type: application/json
-
-{
-  "githubUrls": [
-    "https://github.com/vuejs/pinia",
-    "https://github.com/vuejs/router"
-  ]
-}
-```
+## Deployment
 
 ### Production Build
 
@@ -202,7 +69,42 @@ pnpm build
 
 # Preview production build locally
 pnpm preview
-
-# Generate static site (optional)
-pnpm start
 ```
+
+### Static Site Generation
+
+```bash
+# Generate static site
+pnpm generate
+```
+
+The application is configured to pre-render all plugin detail pages for optimal performance and SEO.
+
+### Environment Variables
+
+```bash
+# .env file
+GITHUB_TOKEN=your_github_personal_access_token_here
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/new-feature`
+3. Make your changes and commit: `git commit -m 'Add new feature'`
+4. Push to the branch: `git push origin feature/new-feature`
+5. Submit a pull request
+
+### Adding New Plugins
+
+To add new plugins to the collection:
+
+1. Edit `public/plugins.json`
+2. Add your plugin following the `VuePlugin` interface structure
+3. Ensure all required fields are filled
+4. Test the plugin detail page works correctly
+5. Submit a pull request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.

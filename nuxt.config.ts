@@ -12,5 +12,23 @@ export default defineNuxtConfig({
   runtimeConfig: {
     githubToken: process.env.GITHUB_TOKEN || "",
   },
+  hooks: {
+    'nitro:config': async (nitroConfig) => {
+      // Import plugins data to generate routes
+      const pluginsData = await import('./public/plugins.json').then(m => m.default)
+      
+      // Generate routes for all plugin detail pages
+      const pluginRoutes = pluginsData.map((plugin: { id: string }) => `/plugins/${plugin.id}`)
+      
+      if (!nitroConfig.prerender) {
+        nitroConfig.prerender = {}
+      }
+      
+      nitroConfig.prerender.routes = [
+        '/',
+        ...pluginRoutes
+      ]
+    }
+  }
 })
 

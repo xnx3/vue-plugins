@@ -64,7 +64,8 @@ async function fetchGitHubData(githubUrl: string): Promise<{
     }
 
     const response = await $fetch<GitHubRepo>(buildGitHubApiUrl(repoPath, ""), {
-      headers
+      headers,
+      timeout: 10000 // 10 second timeout for individual requests
     })
 
     return {
@@ -108,6 +109,7 @@ async function fetchGitHubReadme(githubUrl: string): Promise<string> {
           buildGitHubApiUrl(repoPath, `/contents/${filename}`),
           {
             headers,
+            timeout: 10000 // Add timeout for README fetch too
           },
         )
 
@@ -167,9 +169,13 @@ const { data: plugin, pending, error } = await useAsyncData<PluginWithStats>(
       ...githubData,
       downloads,
       readme,
-    }
+    } as PluginWithStats
 
-    return pluginWithStats as PluginWithStats
+    return pluginWithStats
+  },
+  {
+    // Ensure data is fetched on server during static generation
+    server: true
   }
 )
 

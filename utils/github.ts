@@ -48,8 +48,11 @@ export async function fetchGitHubStars(githubUrls: string[]): Promise<Record<str
           }
 
           // Add auth token if available for higher rate limits
-          if (config.githubToken) {
-            headers["Authorization"] = `Bearer ${config.githubToken}`
+          const token = config.githubToken || config.public.githubToken
+
+          // Add auth token if available for higher rate limits
+          if (token) {
+            headers["Authorization"] = `Bearer ${token}`
           }
 
           const response = await $fetch<{ stargazers_count: number }>(
@@ -100,9 +103,11 @@ export async function fetchGitHubData(githubUrl: string): Promise<{
       "User-Agent": "Vue-Plugins-Collection"
     }
 
+    const token = config.githubToken || config.public.githubToken
+
     // Add auth token if available for higher rate limits
-    if (config.githubToken) {
-      headers["Authorization"] = `Bearer ${config.githubToken}`
+    if (token) {
+      headers["Authorization"] = `Bearer ${token}`
     }
 
     const response = await $fetch<GitHubRepo>(buildGitHubApiUrl(repoPath, ""), {
@@ -146,8 +151,11 @@ export async function fetchGitHubReadme(githubUrl: string): Promise<string> {
         }
 
         // Add auth token if available for higher rate limits
-        if (config.githubToken) {
-          headers["Authorization"] = `Bearer ${config.githubToken}`
+        const token = config.githubToken || config.public.githubToken
+
+        // Add auth token if available for higher rate limits
+        if (token) {
+          headers["Authorization"] = `Bearer ${token}`
         }
 
         const response = await $fetch<{ content: string; encoding: string }>(

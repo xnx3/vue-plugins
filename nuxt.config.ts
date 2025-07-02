@@ -11,6 +11,10 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     githubToken: process.env.GITHUB_TOKEN || "",
+    public: {
+      // Public runtime config for client-side access on local environment only
+      githubToken: process.env.NODE_ENV === 'development' ? process.env.GITHUB_TOKEN : "",
+    }
   },
   hooks: {
     'nitro:config': async (nitroConfig) => {

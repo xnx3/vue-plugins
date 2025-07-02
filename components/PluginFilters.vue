@@ -102,12 +102,26 @@ import type { FilterOptions } from '~/types'
 
 interface Props {
   filters: FilterOptions
-  categories: string[]
 }
 
 interface Emits {
   (e: 'update:filters', filters: FilterOptions): void
 }
+
+const categories = [
+  "Routing",
+  "State Management",
+  "Utilities",
+  "Internationalization",
+  "UI Framework",
+  "Animation",
+  "Forms",
+  "Testing",
+  "Development Tools",
+  "Data Fetching",
+  "CMS",
+  "Search",
+]
 
 const props = defineProps<Props>()
 const emit = defineEmits<Emits>()

@@ -10,23 +10,34 @@
         {{ plugin.type }}
       </span>
       
-      <!-- GitHub Stars -->
-      <div class="flex items-center text-sm text-slate-600 dark:text-slate-300">
-        <Icon name="lucide:star" class="h-4 w-4 mr-1 text-yellow-500" />
-        <span class="font-medium">
-          {{ formatStars(plugin.stars) }}
-        </span>
+      <!-- Stats -->
+      <div class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300">
+        <!-- GitHub Stars -->
+        <div class="flex items-center">
+          <Icon name="lucide:star" class="h-4 w-4 mr-1 text-yellow-500" />
+          <span class="font-medium">
+            {{ formatNumber(plugin.stars) }}
+          </span>
+        </div>
+        
+        <!-- NPM Downloads -->
+        <div class="flex items-center">
+          <Icon name="lucide:download" class="h-4 w-4 mr-1 text-blue-500" />
+          <span class="font-medium">
+            {{ formatNumber(plugin.downloads) }}
+          </span>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { VuePluginWithStars } from '~/types'
+import type { VuePluginWithStarsAndDownloads } from '~/types'
 import { navigateTo } from '#app'
 
 interface Props {
-  plugin: VuePluginWithStars
+  plugin: VuePluginWithStarsAndDownloads
 }
 
 const props = defineProps<Props>()
@@ -35,7 +46,7 @@ const navigateToPlugin = () => {
   navigateTo(`/plugins/${props.plugin.id}`)
 }
 
-const formatStars = (count: number): string => {
+const formatNumber = (count: number): string => {
   if (count >= 1000000) {
     return (count / 1000000).toFixed(1) + 'M'
   }

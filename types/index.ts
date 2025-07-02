@@ -28,6 +28,11 @@ export interface VuePluginWithStars extends VuePlugin {
   stars: number
 }
 
+export interface VuePluginWithStarsAndDownloads extends VuePlugin {
+  stars: number
+  downloads: number
+}
+
 export interface PluginWithStats extends VuePlugin {
   stars: number
   downloads: number

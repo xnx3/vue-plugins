@@ -22,10 +22,10 @@
 </template>
 
 <script setup lang="ts">
-import type { VuePluginWithStars } from '~/types'
+import type { VuePluginWithStarsAndDownloads } from '~/types'
 
 interface Props {
-  plugins: VuePluginWithStars[]
+  plugins: VuePluginWithStarsAndDownloads[]
   currentPage?: number
   totalPages?: number
   total?: number

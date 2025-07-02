@@ -46,9 +46,10 @@
 </template>
 
 <script setup lang="ts">
-import type { FilterOptions, PaginatedResponse, VuePluginWithStars } from '~/types'
+import type { FilterOptions, PaginatedResponse, VuePluginWithStarsAndDownloads } from '~/types'
 import pluginsData from '~/public/plugins.json'
 import { extractRepoPath, buildGitHubApiUrl } from '~/utils/github'
+import { fetchNPMDownloads } from '~/utils/npm'
 
 // SEO
 useHead({
@@ -128,24 +129,69 @@ async function fetchGitHubStars(githubUrls: string[]): Promise<Record<string, nu
   }
 }
 
-// Fetch all plugins with GitHub data once on server side
-const { data: allPluginsWithStars, pending, error, refresh } = await useAsyncData<VuePluginWithStars[]>(
-  'all-plugins-with-stars',
+// Helper function to fetch NPM downloads
+async function fetchNPMDownloadsBatch(packageNames: string[]): Promise<Record<string, number>> {
+  try {
+    const results: Record<string, number> = {}
+    
+    // Process requests in batches to avoid rate limiting
+    const batchSize = 15
+    const batches = []
+    
+    for (let i = 0; i < packageNames.length; i += batchSize) {
+      batches.push(packageNames.slice(i, i + batchSize))
+    }
+
+    for (const batch of batches) {
+      const promises = batch.map(async (packageName: string) => {
+        try {
+          const npmData = await fetchNPMDownloads(packageName)
+          results[packageName] = npmData.downloads
+        } catch (error) {
+          console.error(`Failed to fetch downloads for ${packageName}:`, error)
+          results[packageName] = 0
+        }
+      })
+
+      await Promise.all(promises)
+      
+      // Small delay between batches to be respectful to NPM API
+      if (batches.indexOf(batch) < batches.length - 1) {
+        await new Promise(resolve => setTimeout(resolve, 100))
+      }
+    }
+
+    return results
+  } catch (error) {
+    console.error('Failed to fetch NPM downloads:', error)
+    return {}
+  }
+}
+
+// Fetch all plugins with GitHub data and NPM downloads once on server side
+const { data: allPluginsWithStars, pending, error, refresh } = await useAsyncData<VuePluginWithStarsAndDownloads[]>(
+  'all-plugins-with-stars-and-downloads',
   async () => {
     // Start with all plugins
     const basePlugins = [...pluginsData]
 
-    // Fetch GitHub stars for all plugins
+    // Fetch GitHub stars and NPM downloads for all plugins in parallel
     const githubUrls = basePlugins.map(plugin => plugin.githubUrl)
-    const starsMap = await fetchGitHubStars(githubUrls)
+    const packageNames = basePlugins.map(plugin => plugin.packageName)
+    
+    const [starsMap, downloadsMap] = await Promise.all([
+      fetchGitHubStars(githubUrls),
+      fetchNPMDownloadsBatch(packageNames)
+    ])
 
-    // Add stars to plugins
-    const pluginsWithStars = basePlugins.map(plugin => ({
+    // Add stars and downloads to plugins
+    const pluginsWithStarsAndDownloads = basePlugins.map(plugin => ({
       ...plugin,
-      stars: starsMap[plugin.githubUrl] || 0
-    })) as VuePluginWithStars[]
+      stars: starsMap[plugin.githubUrl] || 0,
+      downloads: downloadsMap[plugin.packageName] || 0
+    })) as VuePluginWithStarsAndDownloads[]
 
-    return pluginsWithStars
+    return pluginsWithStarsAndDownloads
   }
 )
 
@@ -204,7 +250,7 @@ const sortedData = computed(() => {
   const endIndex = startIndex + Number(limit)
   const paginatedPlugins = filteredPlugins.slice(startIndex, endIndex)
 
-  const response: PaginatedResponse<VuePluginWithStars> = {
+  const response: PaginatedResponse<VuePluginWithStarsAndDownloads> = {
     data: paginatedPlugins,
     total: filteredPlugins.length,
     page: Number(page),

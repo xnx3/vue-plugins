@@ -38,6 +38,7 @@
 import type { PluginWithStats, GitHubRepo } from '~/types'
 import pluginsData from '~/public/plugins.json'
 import { extractRepoPath, buildGitHubApiUrl, buildRawGitHubUrl } from '~/utils/github'
+import { fetchNPMDownloads } from '~/utils/npm'
 
 const route = useRoute()
 const pluginId = route.params.id as string
@@ -155,19 +156,17 @@ const { data: plugin, pending, error } = await useAsyncData<PluginWithStats>(
       })
     }
 
-    // Fetch GitHub data and README in parallel
-    const [githubData, readme] = await Promise.all([
+    // Fetch GitHub data, README, and NPM downloads in parallel
+    const [githubData, readme, npmData] = await Promise.all([
       fetchGitHubData(basePlugin.githubUrl),
       fetchGitHubReadme(basePlugin.githubUrl),
+      fetchNPMDownloads(basePlugin.packageName),
     ])
-
-    // Mock downloads data (in real app, fetch from npm API)
-    const downloads = Math.floor(Math.random() * 1000000) + 10000
 
     const pluginWithStats = {
       ...basePlugin,
       ...githubData,
-      downloads,
+      downloads: npmData.downloads,
       readme,
     } as PluginWithStats
 

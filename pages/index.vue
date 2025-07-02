@@ -48,7 +48,7 @@
 <script setup lang="ts">
 import type { FilterOptions, PaginatedResponse, VuePluginWithStarsAndDownloads } from '~/types'
 import pluginsData from '~/public/plugins.json'
-import { extractRepoPath, buildGitHubApiUrl } from '~/utils/github'
+import { fetchGitHubStars } from '~/utils/github'
 import { fetchNPMDownloads } from '~/utils/npm'
 
 // SEO
@@ -70,64 +70,6 @@ const filters = ref<FilterOptions>({
   page: 1,
   limit: 12
 })
-
-// Helper function to fetch GitHub stars
-async function fetchGitHubStars(githubUrls: string[]): Promise<Record<string, number>> {
-  try {
-    const config = useRuntimeConfig()
-    const results: Record<string, number> = {}
-    
-    // Process requests in batches to avoid rate limiting
-    const batchSize = 10
-    const batches = []
-    
-    for (let i = 0; i < githubUrls.length; i += batchSize) {
-      batches.push(githubUrls.slice(i, i + batchSize))
-    }
-
-    for (const batch of batches) {
-      const promises = batch.map(async (githubUrl: string) => {
-        try {
-          const repoPath = extractRepoPath(githubUrl)
-          const headers: Record<string, string> = {
-            "Accept": "application/vnd.github.v3+json",
-            "User-Agent": "Vue-Plugins-Collection"
-          }
-
-          // Add auth token if available for higher rate limits
-          if (config.githubToken) {
-            headers["Authorization"] = `Bearer ${config.githubToken}`
-          }
-
-          const response = await $fetch<{ stargazers_count: number }>(
-            buildGitHubApiUrl(repoPath, ""),
-            {
-              headers,
-              timeout: 5000 // 5 second timeout
-            }
-          )
-
-          results[githubUrl] = response.stargazers_count
-        } catch (error) {
-          console.error(`Failed to fetch stars for ${githubUrl}:`, error)
-          results[githubUrl] = 0
-        }
-      })
-
-      await Promise.all(promises)
-      
-      // Small delay between batches to be respectful to GitHub API
-      if (batches.indexOf(batch) < batches.length - 1) {
-        await new Promise(resolve => setTimeout(resolve, 100))
-      }
-    }
-
-    return results
-  } catch (error) {
-    console.error('Failed to fetch GitHub stars:', error)
-    return {}
-  }
-}
 
 // Helper function to fetch NPM downloads
 async function fetchNPMDownloadsBatch(packageNames: string[]): Promise<Record<string, number>> {

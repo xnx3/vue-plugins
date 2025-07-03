@@ -3,6 +3,9 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
   modules: ["@nuxtjs/tailwindcss", "@nuxtjs/color-mode", "@vueuse/nuxt", "@nuxt/icon", '@nuxt/eslint', 'reka-ui/nuxt'],
+  experimental: {
+    viewTransition: true,
+  },
   css: ["~/assets/css/main.css"],
   colorMode: {
     classSuffix: '',

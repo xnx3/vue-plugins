@@ -49,14 +49,6 @@ module.exports = {
               backgroundColor: 'transparent',
               padding: '0',
             },
-            // Images styling
-            img: {
-              height: '26px',
-              width: 'auto',
-              display: 'inline-block',
-              verticalAlign: 'text-top',
-              margin: '0',
-            },
           },
         },
         invert: {

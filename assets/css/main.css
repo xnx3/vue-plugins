@@ -59,38 +59,16 @@
   box-shadow: 0 10px 15px -3px rgba(79, 192, 141, 0.1), 0 4px 6px -2px rgba(79, 192, 141, 0.05);
 }
 
-/* Dark mode prose improvements */
-@layer utilities {
-  .prose-invert {
-    --tw-prose-body: rgb(226 232 240);
-    --tw-prose-headings: rgb(248 250 252);
-    --tw-prose-lead: rgb(203 213 225);
-    --tw-prose-links: #4fc08d;
-    --tw-prose-bold: rgb(248 250 252);
-    --tw-prose-counters: rgb(156 163 175);
-    --tw-prose-bullets: rgb(75 85 99);
-    --tw-prose-hr: rgb(55 65 81);
-    --tw-prose-quotes: rgb(248 250 252);
-    --tw-prose-quote-borders: rgb(55 65 81);
-    --tw-prose-captions: rgb(156 163 175);
-    --tw-prose-code: rgb(248 250 252);
-    --tw-prose-pre-code: rgb(226 232 240);
-    --tw-prose-pre-bg: rgb(30 41 59);
-    --tw-prose-th-borders: rgb(55 65 81);
-    --tw-prose-td-borders: rgb(55 65 81);
-  }
-}
-
 /* Custom syntax highlighting styles */
 .prose .hljs {
   @apply rounded-lg border border-slate-200 dark:border-slate-600 text-sm;
-  background: #f8f9fa !important;
-  color: #24292e !important;
+  background: transparent !important;
+  color: inherit !important;
 }
 
 .dark .prose .hljs {
-  background: #1e293b !important;
-  color: #e2e8f0 !important;
+  background: transparent !important;
+  color: inherit !important;
 }
 
 .prose .hljs-keyword,
@@ -173,6 +151,14 @@
   color: #3b82f6 !important;
 }
 
+/* Emoji styling */
+.prose .emoji {
+  width: 1.2em;
+  height: 1.2em;
+  display: inline-block;
+  vertical-align: text-top;
+}
+
 /* Prose heading styles */
 .prose h1 {
   @apply text-3xl font-bold text-[#2c3e50] dark:text-slate-100 mt-8 mb-4 leading-tight;
@@ -215,7 +201,8 @@
 }
 
 .prose code {
-  @apply px-1 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-sm font-mono text-[#2c3e50] dark:text-slate-200;
+  @apply px-1 py-0.5 rounded text-sm font-mono text-[#2c3e50] dark:text-slate-200;
+  background: transparent !important;
 }
 
 .prose ul {

@@ -33,6 +33,14 @@ export const useMarkdown = () => {
         return '<pre class="hljs"><code>' + markdownRenderer!.utils.escapeHtml(str) + '</code></pre>'
       }
     })
+    
+    // Add emoji plugin with type assertion
+    try {
+      const emoji = await import('markdown-it-emoji')
+      markdownRenderer.use(emoji.full)
+    } catch (error) {
+      console.warn('Failed to load emoji plugin:', error)
+    }
   }
 
   const renderMarkdown = async (source: string) => {

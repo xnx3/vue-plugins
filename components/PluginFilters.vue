@@ -1,6 +1,6 @@
 <template>
   <div class="bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 p-6 mb-8">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-2">
       <!-- Search -->
       <div>
         <label for="search" class="block text-sm font-semibold text-[#2c3e50] dark:text-slate-200 mb-2">Search</label>
@@ -11,42 +11,67 @@
             v-model="localFilters.search"
             type="text"
             placeholder="Search plugins..."
-            class="input-field pl-10"
+            class="input-field pl-10 pr-10"
             @input="debouncedUpdate"
           >
+          <button
+            v-if="localFilters.search"
+            class="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 rounded-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-400 hover:text-slate-600 hover:border-slate-400 dark:text-slate-500 dark:hover:text-slate-300 dark:hover:border-slate-400 transition-colors flex items-center justify-center"
+            @click="clearSearch"
+          >
+            <Icon name="lucide:x" class="h-3 w-3" />
+          </button>
         </div>
       </div>
       
       <!-- Category -->
       <div>
         <label for="category" class="block text-sm font-semibold text-[#2c3e50] dark:text-slate-200 mb-2">Category</label>
-        <select
-          id="category"
-          v-model="localFilters.category"
-          class="input-field"
-          @change="updateFilters"
-        >
-          <option value="">All Categories</option>
-          <option v-for="category in categories" :key="category" :value="category">
-            {{ category }}
-          </option>
-        </select>
+        <div class="relative">
+          <select
+            id="category"
+            v-model="localFilters.category"
+            class="input-field pr-10"
+            @change="updateFilters"
+          >
+            <option value="">All Categories</option>
+            <option v-for="category in categories" :key="category" :value="category">
+              {{ category }}
+            </option>
+          </select>
+          <button
+            v-if="localFilters.category"
+            class="absolute right-8 top-1/2 transform -translate-y-1/2 h-5 w-5 rounded-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-400 hover:text-slate-600 hover:border-slate-400 dark:text-slate-500 dark:hover:text-slate-300 dark:hover:border-slate-400 transition-colors flex items-center justify-center"
+            @click="clearCategory"
+          >
+            <Icon name="lucide:x" class="h-3 w-3" />
+          </button>
+        </div>
       </div>
       
       <!-- Sort -->
       <div>
         <label for="sort" class="block text-sm font-semibold text-[#2c3e50] dark:text-slate-200 mb-2">Sort By</label>
-        <select
-          id="sort"
-          v-model="localFilters.sort"
-          class="input-field"
-          @change="updateFilters"
-        >
-          <option value="name-asc">Name (A-Z)</option>
-          <option value="name-desc">Name (Z-A)</option>
-          <option value="stars-desc">Stars (High to Low)</option>
-          <option value="stars-asc">Stars (Low to High)</option>
-        </select>
+        <div class="relative">
+          <select
+            id="sort"
+            v-model="localFilters.sort"
+            class="input-field pr-10"
+            @change="updateFilters"
+          >
+            <option value="name-asc">Name (A-Z)</option>
+            <option value="name-desc">Name (Z-A)</option>
+            <option value="stars-desc">Stars (High to Low)</option>
+            <option value="stars-asc">Stars (Low to High)</option>
+          </select>
+          <button
+            v-if="localFilters.sort !== 'name-asc'"
+            class="absolute right-8 top-1/2 transform -translate-y-1/2 h-5 w-5 rounded-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-400 hover:text-slate-600 hover:border-slate-400 dark:text-slate-500 dark:hover:text-slate-300 dark:hover:border-slate-400 transition-colors flex items-center justify-center"
+            @click="clearSort"
+          >
+            <Icon name="lucide:x" class="h-3 w-3" />
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -87,6 +112,21 @@ const localFilters = ref({ ...props.filters })
 
 const updateFilters = () => {
   emit('update:filters', { ...localFilters.value, page: 1 })
+}
+
+const clearSearch = () => {
+  localFilters.value.search = ''
+  updateFilters()
+}
+
+const clearCategory = () => {
+  localFilters.value.category = ''
+  updateFilters()
+}
+
+const clearSort = () => {
+  localFilters.value.sort = 'name-asc'
+  updateFilters()
 }
 
 const debouncedUpdate = useDebounceFn(updateFilters, 300)

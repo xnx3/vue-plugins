@@ -502,25 +502,6 @@
     "type": "community"
   },
   {
-    "id": "vueuse-core",
-    "name": "VueUse",
-    "description": "Collection of 300+ Vue Composition API utilities for common tasks.",
-    "category": "Utilities",
-    "packageName": "@vueuse/core",
-    "githubUrl": "https://github.com/vueuse/vueuse",
-    "npmUrl": "https://www.npmjs.com/package/@vueuse/core",
-    "documentationUrl": "https://vueuse.org/",
-    "author": "VueUse Team",
-    "tags": [
-      "composition",
-      "utilities",
-      "reactivity",
-      "vue3",
-      "community"
-    ],
-    "type": "community"
-  },
-  {
     "id": "vue-final-modal",
     "name": "Vue Final Modal",
     "description": "Highly customizable, stackable modal component for Vue 3.",

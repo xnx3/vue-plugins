@@ -1,6 +1,6 @@
 <template>
   <div class="bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 p-6 mb-8">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
       <!-- Search -->
       <div>
         <label for="search" class="block text-sm font-semibold text-[#2c3e50] dark:text-slate-200 mb-2">Search</label>
@@ -46,22 +46,6 @@
           <option value="name-desc">Name (Z-A)</option>
           <option value="stars-desc">Stars (High to Low)</option>
           <option value="stars-asc">Stars (Low to High)</option>
-        </select>
-      </div>
-      
-      <!-- Results per Page -->
-      <div>
-        <label for="limit" class="block text-sm font-semibold text-[#2c3e50] dark:text-slate-200 mb-2">Results per Page</label>
-        <select
-          id="limit"
-          v-model="localFilters.limit"
-          class="input-field"
-          @change="updateFilters"
-        >
-          <option :value="6">6 per page</option>
-          <option :value="12">12 per page</option>
-          <option :value="24">24 per page</option>
-          <option :value="48">48 per page</option>
         </select>
       </div>
     </div>

@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
-  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/color-mode", "@vueuse/nuxt", "@nuxt/icon", '@nuxt/eslint', 'reka-ui/nuxt'],
+  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/color-mode", "@vueuse/nuxt", "@nuxt/icon", '@nuxt/eslint', 'reka-ui/nuxt', '@nuxtjs/sitemap'],
   experimental: {
     viewTransition: true,
   },
@@ -34,6 +34,24 @@ export default defineNuxtConfig({
       nitroConfig.prerender.routes = [
         '/',
         ...pluginRoutes
+      ]
+    }
+  },
+  sitemap: {
+    urls: async () => {
+      const pluginsData = await import('./public/plugins.json').then(m => m.default)
+      
+      // Generate routes for all plugin detail pages
+      const pluginRoutes = pluginsData.map((plugin: { id: string }) => `/plugins/${plugin.id}`)
+      return [
+        {
+          loc: '/',
+          lastmod: new Date().toISOString(),
+        },
+        ...pluginRoutes.map(route => ({
+          loc: route,
+          lastmod: new Date().toISOString(),
+        }))
       ]
     }
   }

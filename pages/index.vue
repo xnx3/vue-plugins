@@ -62,14 +62,29 @@ useHead({
   ]
 })
 
-// State
-const filters = ref<FilterOptions>({
-  search: '',
-  category: '',
-  sort: 'stars-desc',
-  page: 1,
-  limit: 12
-})
+// URL sync helpers
+const route = useRoute()
+const router = useRouter()
+
+// Initialize filters from URL query parameters
+const getFiltersFromQuery = () => {
+  const search = (route.query.search as string) || ''
+  const category = (route.query.category as string) || ''
+  const sort = (route.query.sort as FilterOptions['sort']) || 'stars-desc'
+  const page = parseInt((route.query.page as string) || '1')
+  const limit = parseInt((route.query.limit as string) || '12')
+  
+  return {
+    search,
+    category,
+    sort,
+    page,
+    limit
+  }
+}
+
+// State - Initialize from URL
+const filters = ref<FilterOptions>(getFiltersFromQuery())
 
 // Helper function to fetch NPM downloads
 async function fetchNPMDownloadsBatch(packageNames: string[]): Promise<Record<string, number>> {
@@ -205,7 +220,15 @@ const sortedData = computed(() => {
 
 // Methods
 const updateFilters = (newFilters: FilterOptions) => {
-  filters.value = { ...newFilters }
+  // Reset page to 1 when other filters change, unless it's a page-only update
+  const isPageOnlyUpdate = Object.keys(newFilters).every(key => 
+    key === 'page' || newFilters[key as keyof FilterOptions] === filters.value[key as keyof FilterOptions]
+  )
+  
+  filters.value = { 
+    ...newFilters, 
+    page: isPageOnlyUpdate ? newFilters.page : 1 
+  }
 }
 
 const updatePage = (page: number) => {
@@ -216,10 +239,7 @@ const updatePage = (page: number) => {
   }
 }
 
-// URL sync
-const route = useRoute()
-const router = useRouter()
-
+// URL sync - Watch filters and update URL
 watch(filters, (newFilters) => {
   const query: Record<string, string> = {}
   
@@ -227,17 +247,20 @@ watch(filters, (newFilters) => {
   if (newFilters.category) query.category = newFilters.category
   if (newFilters.sort !== 'stars-desc') query.sort = newFilters.sort
   if (newFilters.page > 1) query.page = newFilters.page.toString()
+  if (newFilters.limit !== 12) query.limit = newFilters.limit.toString()
   
   router.push({ query })
 }, { deep: true })
 
-// Initialize from URL
-onMounted(() => {
-  if (route.query.search) filters.value.search = route.query.search as string
-  if (route.query.category) filters.value.category = route.query.category as string
-  if (route.query.sort) filters.value.sort = route.query.sort as FilterOptions['sort']
-  if (route.query.page) filters.value.page = parseInt(route.query.page as string)
-})
+// Watch URL changes and update filters (for browser back/forward)
+watch(() => route.query, () => {
+  const newFilters = getFiltersFromQuery()
+  
+  // Only update if filters actually changed to avoid infinite loop
+  if (JSON.stringify(filters.value) !== JSON.stringify(newFilters)) {
+    filters.value = newFilters
+  }
+}, { deep: true })
 </script>
 
 

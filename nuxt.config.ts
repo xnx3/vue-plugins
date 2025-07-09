@@ -37,6 +37,7 @@ export default defineNuxtConfig({
       ]
     }
   },
+  site: { url: 'https://vue-plugins.vercel.app' },
   sitemap: {
     urls: async () => {
       const pluginsData = await import('./public/plugins.json').then(m => m.default)

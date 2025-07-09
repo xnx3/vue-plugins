@@ -11,12 +11,13 @@
             v-model="localFilters.search"
             type="text"
             placeholder="Search plugins..."
-            class="input-field pl-10 pr-10"
+            class="input-field pl-10 pr-12"
             @input="debouncedUpdate"
           >
           <button
             v-if="localFilters.search"
-            class="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 rounded-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-400 hover:text-slate-600 hover:border-slate-400 dark:text-slate-500 dark:hover:text-slate-300 dark:hover:border-slate-400 transition-colors flex items-center justify-center"
+            class="absolute right-1 top-1/2 transform -translate-y-1/2 h-8 w-8 rounded-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-400 hover:text-slate-600 hover:border-slate-400 dark:text-slate-500 dark:hover:text-slate-300 dark:hover:border-slate-400 transition-colors flex items-center justify-center"
+            aria-label="Clear search"
             @click="clearSearch"
           >
             <Icon name="lucide:x" class="h-3 w-3" />
@@ -31,7 +32,7 @@
           <select
             id="category"
             v-model="localFilters.category"
-            class="input-field pr-10"
+            class="input-field pr-12"
             @change="updateFilters"
           >
             <option value="">All Categories</option>
@@ -41,7 +42,8 @@
           </select>
           <button
             v-if="localFilters.category"
-            class="absolute right-8 top-1/2 transform -translate-y-1/2 h-5 w-5 rounded-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-400 hover:text-slate-600 hover:border-slate-400 dark:text-slate-500 dark:hover:text-slate-300 dark:hover:border-slate-400 transition-colors flex items-center justify-center"
+            class="absolute right-6 top-1/2 transform -translate-y-1/2 h-8 w-8 rounded-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-400 hover:text-slate-600 hover:border-slate-400 dark:text-slate-500 dark:hover:text-slate-300 dark:hover:border-slate-400 transition-colors flex items-center justify-center"
+            aria-label="Clear category filter"
             @click="clearCategory"
           >
             <Icon name="lucide:x" class="h-3 w-3" />
@@ -56,7 +58,7 @@
           <select
             id="sort"
             v-model="localFilters.sort"
-            class="input-field pr-10"
+            class="input-field pr-12"
             @change="updateFilters"
           >
             <option value="name-asc">Name (A-Z)</option>
@@ -65,8 +67,9 @@
             <option value="stars-asc">Stars (Low to High)</option>
           </select>
           <button
-            v-if="localFilters.sort !== 'name-asc'"
-            class="absolute right-8 top-1/2 transform -translate-y-1/2 h-5 w-5 rounded-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-400 hover:text-slate-600 hover:border-slate-400 dark:text-slate-500 dark:hover:text-slate-300 dark:hover:border-slate-400 transition-colors flex items-center justify-center"
+            v-if="localFilters.sort !== 'stars-desc'"
+            class="absolute right-6 top-1/2 transform -translate-y-1/2 h-8 w-8 rounded-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-400 hover:text-slate-600 hover:border-slate-400 dark:text-slate-500 dark:hover:text-slate-300 dark:hover:border-slate-400 transition-colors flex items-center justify-center"
+            aria-label="Reset sort to default (Stars High to Low)"
             @click="clearSort"
           >
             <Icon name="lucide:x" class="h-3 w-3" />
@@ -125,7 +128,7 @@ const clearCategory = () => {
 }
 
 const clearSort = () => {
-  localFilters.value.sort = 'name-asc'
+  localFilters.value.sort = 'stars-desc'
   updateFilters()
 }
 

@@ -4,6 +4,7 @@
       <button
         :disabled="currentPage <= 1"
         class="btn-secondary disabled:opacity-50 disabled:cursor-not-allowed"
+        :aria-label="`Go to previous page (page ${currentPage - 1})`"
         @click="emit('update:page', currentPage - 1)"
       >
         Previous
@@ -11,6 +12,7 @@
       <button
         :disabled="currentPage >= totalPages"
         class="btn-secondary disabled:opacity-50 disabled:cursor-not-allowed"
+        :aria-label="`Go to next page (page ${currentPage + 1})`"
         @click="emit('update:page', currentPage + 1)"
       >
         Next
@@ -34,6 +36,7 @@
           <button
             :disabled="currentPage <= 1"
             class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-sm font-medium text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed"
+            :aria-label="`Go to previous page (page ${currentPage - 1})`"
             @click="emit('update:page', currentPage - 1)"
           >
             <Icon name="lucide:chevron-left" class="h-5 w-5" />
@@ -48,6 +51,8 @@
                 ? 'z-10 bg-[#4fc08d]/10 border-[#4fc08d] text-[#4fc08d]'
                 : 'bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700'
             ]"
+            :aria-label="`${page === currentPage ? 'Current page, ' : ''}Go to page ${page}`"
+            :aria-current="page === currentPage ? 'page' : undefined"
             @click="emit('update:page', page)"
           >
             {{ page }}
@@ -56,6 +61,7 @@
           <button
             :disabled="currentPage >= totalPages"
             class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-sm font-medium text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed"
+            :aria-label="`Go to next page (page ${currentPage + 1})`"
             @click="emit('update:page', currentPage + 1)"
           >
             <Icon name="lucide:chevron-right" class="h-5 w-5" />

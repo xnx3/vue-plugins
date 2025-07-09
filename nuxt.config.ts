@@ -19,6 +19,13 @@ export default defineNuxtConfig({
       githubToken: process.env.NODE_ENV === 'development' ? process.env.GITHUB_TOKEN : "",
     }
   },
+  app: {
+    head: {
+      htmlAttrs: {
+        lang: 'en',
+      }
+    }
+  },
   hooks: {
     'nitro:config': async (nitroConfig) => {
       // Import plugins data to generate routes

@@ -607,25 +607,6 @@
     "type": "community"
   },
   {
-    "id": "vueuse-motion",
-    "name": "VueUse Motion",
-    "description": "Composable animation library for Vue (inspired by Framer Motion).",
-    "category": "Animation",
-    "packageName": "@vueuse/motion",
-    "githubUrl": "https://github.com/vueuse/motion",
-    "npmUrl": "https://www.npmjs.com/package/@vueuse/motion",
-    "documentationUrl": "https://motion.vueuse.org/",
-    "author": "VueUse Team",
-    "tags": [
-      "animation",
-      "motion",
-      "composable",
-      "vue3",
-      "community"
-    ],
-    "type": "community"
-  },
-  {
     "id": "vue-chartjs",
     "name": "Vue Chart.js",
     "description": "Vue 3 wrapper for Chart.js - beautiful charts made easy.",

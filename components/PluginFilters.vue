@@ -12,7 +12,7 @@
             type="text"
             placeholder="Search plugins..."
             class="input-field pl-10 pr-12"
-            @input="debouncedUpdate"
+            @input="updateFilters"
           >
           <button
             v-if="localFilters.search"
@@ -90,7 +90,6 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import { useDebounceFn } from '@vueuse/core'
 import type { FilterOptions } from '~/types'
 
 interface Props {
@@ -140,7 +139,6 @@ const clearSort = () => {
   updateFilters()
 }
 
-const debouncedUpdate = useDebounceFn(updateFilters, 300)
 
 watch(() => props.filters, (newFilters) => {
   localFilters.value = { ...newFilters }

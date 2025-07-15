@@ -147,7 +147,7 @@
     "githubUrl": "https://github.com/logaretm/vee-validate",
     "npmUrl": "https://www.npmjs.com/package/vee-validate",
     "documentationUrl": "https://vee-validate.logaretm.com/",
-    "author": "Logaretm",
+    "author": "Abdelrahman Awad",
     "tags": [
       "forms",
       "validation",
@@ -1614,7 +1614,7 @@
     "githubUrl": "https://github.com/formwerkjs/formwerk",
     "npmUrl": "https://www.npmjs.com/package/@formwerk/core",
     "documentationUrl": "https://formwerk.dev/",
-    "author": "Formwerk",
+    "author": "Abdelrahman Awad",
     "tags": [
       "forms",
       "validation",

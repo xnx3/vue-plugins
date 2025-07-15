@@ -1609,7 +1609,7 @@
     "id": "tresjs",
     "name": "TresJS",
     "description": "Declarative ThreeJS using Vue.js Components",
-    "category": "Creative",
+    "category": "3D",
     "packageName": "@tresjs/core",
     "githubUrl": "https://github.com/tresjs/tres",
     "npmUrl": "https://www.npmjs.com/package/@tresjs/core",

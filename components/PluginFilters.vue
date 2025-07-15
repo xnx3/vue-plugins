@@ -113,7 +113,7 @@ const categories = [
   "Data Fetching",
   "CMS",
   "Search",
-  "Creative",
+  "3D",
 ]
 
 const props = defineProps<Props>()

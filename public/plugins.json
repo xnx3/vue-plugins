@@ -147,7 +147,7 @@
     "githubUrl": "https://github.com/logaretm/vee-validate",
     "npmUrl": "https://www.npmjs.com/package/vee-validate",
     "documentationUrl": "https://vee-validate.logaretm.com/",
-    "author": "Logaretm",
+    "author": "Abdelrahman Awad",
     "tags": [
       "forms",
       "validation",
@@ -1601,6 +1601,26 @@
       "ui-component",
       "panel",
       "vue3",
+      "community"
+    ],
+    "type": "community"
+  },
+  {
+    "id": "formwerk",
+    "name": "Formwerk",
+    "description": "The Vue.js framework for building tailored, accessible, and high-quality forms.",
+    "category": "Forms",
+    "packageName": "@formwerk/core",
+    "githubUrl": "https://github.com/formwerkjs/formwerk",
+    "npmUrl": "https://www.npmjs.com/package/@formwerk/core",
+    "documentationUrl": "https://formwerk.dev/",
+    "author": "Abdelrahman Awad",
+    "tags": [
+      "forms",
+      "validation",
+      "a11y",
+      "accessible",
+      "i18n",
       "community"
     ],
     "type": "community"

@@ -1624,5 +1624,23 @@
       "community"
     ],
     "type": "community"
+  },
+  {
+    "id": "tresjs",
+    "name": "TresJS",
+    "description": "Declarative ThreeJS using Vue.js Components",
+    "category": "3D",
+    "packageName": "@tresjs/core",
+    "githubUrl": "https://github.com/tresjs/tres",
+    "npmUrl": "https://www.npmjs.com/package/@tresjs/core",
+    "documentationUrl": "https://docs.tresjs.org/guide/",
+    "author": "@alvarosabu",
+    "tags": [
+      "threejs",
+      "components",
+      "vue3",
+      "community"
+     ],
+    "type": "community"
   }
 ]

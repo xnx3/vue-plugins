@@ -1642,5 +1642,25 @@
       "community"
      ],
     "type": "community"
+  },
+  {
+    "id": "vue-icons",
+    "name": "Vue Icons",
+    "description": "A comprehensive collection of icon components from multiple popular icon sets",
+    "category": "Utilities",
+    "packageName": "vue-icons-lib",
+    "githubUrl": "https://github.com/obiwanpelosi/vue-icons-package",
+    "npmUrl": "https://www.npmjs.com/package/vue-icons-lib",
+    "documentationUrl": "https://vueicons.netlify.app/",
+    "author": "Obiwan Pelosi",
+    "tags": [
+      "icons", 
+      "svg", 
+      "lightweight",
+      "tree-shaking",
+      "vue3", 
+      "community"
+    ],
+    "type": "community"
   }
 ]

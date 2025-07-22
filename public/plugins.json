@@ -147,7 +147,7 @@
     "githubUrl": "https://github.com/logaretm/vee-validate",
     "npmUrl": "https://www.npmjs.com/package/vee-validate",
     "documentationUrl": "https://vee-validate.logaretm.com/",
-    "author": "Logaretm",
+    "author": "Abdelrahman Awad",
     "tags": [
       "forms",
       "validation",
@@ -1601,6 +1601,64 @@
       "ui-component",
       "panel",
       "vue3",
+      "community"
+    ],
+    "type": "community"
+  },
+  {
+    "id": "formwerk",
+    "name": "Formwerk",
+    "description": "The Vue.js framework for building tailored, accessible, and high-quality forms.",
+    "category": "Forms",
+    "packageName": "@formwerk/core",
+    "githubUrl": "https://github.com/formwerkjs/formwerk",
+    "npmUrl": "https://www.npmjs.com/package/@formwerk/core",
+    "documentationUrl": "https://formwerk.dev/",
+    "author": "Abdelrahman Awad",
+    "tags": [
+      "forms",
+      "validation",
+      "a11y",
+      "accessible",
+      "i18n",
+      "community"
+    ],
+    "type": "community"
+  },
+  {
+    "id": "tresjs",
+    "name": "TresJS",
+    "description": "Declarative ThreeJS using Vue.js Components",
+    "category": "3D",
+    "packageName": "@tresjs/core",
+    "githubUrl": "https://github.com/tresjs/tres",
+    "npmUrl": "https://www.npmjs.com/package/@tresjs/core",
+    "documentationUrl": "https://docs.tresjs.org/guide/",
+    "author": "@alvarosabu",
+    "tags": [
+      "threejs",
+      "components",
+      "vue3",
+      "community"
+     ],
+    "type": "community"
+  },
+  {
+    "id": "vue-icons",
+    "name": "Vue Icons",
+    "description": "A comprehensive collection of icon components from multiple popular icon sets",
+    "category": "Utilities",
+    "packageName": "vue-icons-lib",
+    "githubUrl": "https://github.com/obiwanpelosi/vue-icons-package",
+    "npmUrl": "https://www.npmjs.com/package/vue-icons-lib",
+    "documentationUrl": "https://vueicons.netlify.app/",
+    "author": "Obiwan Pelosi",
+    "tags": [
+      "icons", 
+      "svg", 
+      "lightweight",
+      "tree-shaking",
+      "vue3", 
       "community"
     ],
     "type": "community"

@@ -67,6 +67,8 @@
           >
             <option value="name-asc">Name (A-Z)</option>
             <option value="name-desc">Name (Z-A)</option>
+            <option value="downloads-desc">Downloads (High to Low)</option>
+            <option value="downloads-asc">Downloads (Low to High)</option>
             <option value="stars-desc">Stars (High to Low)</option>
             <option value="stars-asc">Stars (Low to High)</option>
           </select>
@@ -75,9 +77,9 @@
             class="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400 dark:text-slate-500 pointer-events-none" 
           />
           <button
-            v-if="localFilters.sort !== 'stars-desc'"
+            v-if="localFilters.sort !== 'downloads-desc'"
             class="absolute right-10 top-1/2 transform -translate-y-1/2 h-8 w-8 rounded-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-400 hover:text-slate-600 hover:border-slate-400 dark:text-slate-500 dark:hover:text-slate-300 dark:hover:border-slate-400 transition-colors flex items-center justify-center z-10"
-            aria-label="Reset sort to default (Stars High to Low)"
+            aria-label="Reset sort to default (Downloads High to Low)"
             @click="clearSort"
           >
             <Icon name="lucide:x" class="h-3 w-3" />
@@ -135,7 +137,7 @@ const clearCategory = () => {
 }
 
 const clearSort = () => {
-  localFilters.value.sort = 'stars-desc'
+  localFilters.value.sort = 'downloads-desc'
   updateFilters()
 }
 

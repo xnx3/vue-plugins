@@ -100,7 +100,7 @@
   {
     "id": "vuex",
     "name": "Vuex",
-    "description": "Official state management pattern and library for Vue.js applications with centralized store.",
+    "description": "Centralized State Management for Vue.js. Use Pinia for Vue 3 instead.",
     "category": "State Management",
     "packageName": "vuex",
     "githubUrl": "https://github.com/vuejs/vuex",

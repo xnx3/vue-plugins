@@ -70,7 +70,7 @@ const router = useRouter()
 const getFiltersFromQuery = () => {
   const search = (route.query.search as string) || ''
   const category = (route.query.category as string) || ''
-  const sort = (route.query.sort as FilterOptions['sort']) || 'stars-desc'
+  const sort = (route.query.sort as FilterOptions['sort']) || 'downloads-desc'
   const page = parseInt((route.query.page as string) || '1')
   const limit = parseInt((route.query.limit as string) || '12')
   
@@ -156,7 +156,7 @@ const { data: allPluginsWithStars, pending, error, refresh } = await useAsyncDat
 const sortedData = computed(() => {
   if (!allPluginsWithStars.value) return null
 
-  const { search = "", category = "", sort = "stars-desc", page = 1, limit = 12 } = filters.value
+  const { search = "", category = "", sort = "downloads-desc", page = 1, limit = 12 } = filters.value
   
   // Start with all plugins
   let filteredPlugins = [...allPluginsWithStars.value]
@@ -193,12 +193,16 @@ const sortedData = computed(() => {
         return a.name.localeCompare(b.name)
       case "name-desc":
         return b.name.localeCompare(a.name)
+      case "downloads-desc":
+        return b.downloads - a.downloads
+      case "downloads-asc":
+        return a.downloads - b.downloads
       case "stars-desc":
         return b.stars - a.stars
       case "stars-asc":
         return a.stars - b.stars
       default:
-        return b.stars - a.stars
+        return b.downloads - a.downloads
     }
   })
 

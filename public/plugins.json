@@ -1662,5 +1662,25 @@
       "community"
     ],
     "type": "community"
-  }
+  },
+  {
+    "id": "regle",
+    "name": "Regle",
+    "description": "Headless form validation library for Vue.js",
+    "category": "Forms",
+    "packageName": "@regle/core",
+    "githubUrl": "https://github.com/victorgarciaesgi/regle",
+    "npmUrl": "https://www.npmjs.com/package/@regle/core",
+    "documentationUrl": "https://reglejs.dev/",
+    "author": "@victorgarciaesgi",
+    "tags": [
+      "forms",
+      "typescript",
+      "validation",
+      "community",
+      "zod",
+      "i18n"
+     ],
+    "type": "community"
+  },
 ]

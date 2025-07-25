@@ -1664,6 +1664,25 @@
     "type": "community"
   },
   {
+    "id": "pinia-colada",
+    "name": "Pinia Colada",
+    "description": "A smart data fetching layer for Vue.js",
+    "category": "Data Fetching",
+    "packageName": "@pinia/colada",
+    "githubUrl": "https://github.com/posva/pinia-colada",
+    "npmUrl": "https://www.npmjs.com/package/@pinia/colada",
+    "documentationUrl": "https://pinia-colada.esm.dev/",
+    "author": "Eduardo San Martin Morote (posva)",
+    "tags": [
+      "lightweight",
+      "data-fetching",
+      "pinia",
+      "vue3", 
+      "community"
+    ],
+    "type": "community"
+  },
+  {
     "id": "voerkai18n",
     "name": "voerkai18n",
     "description": "The Vue 2/3 internationalization plugin",
@@ -1677,7 +1696,7 @@
       "i18n",
       "vue3",
       "Internationalization"
-    ],
+     ],
     "type": "community"
   }
 ]

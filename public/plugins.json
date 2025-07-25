@@ -1662,5 +1662,22 @@
       "community"
     ],
     "type": "community"
+  },
+  {
+    "id": "voerkai18n",
+    "name": "voerkai18n",
+    "description": "The Vue 2/3 internationalization plugin",
+    "category": "Internationalization",
+    "packageName": "@voerkai18n/vue",
+    "githubUrl": "https://github.com/zhangfisher/voerka-i18n",
+    "npmUrl": "https://www.npmjs.com/package/@voerkai18n/vue",
+    "documentationUrl": "https://zhangfisher.github.io/voerka-i18n/",
+    "author": "zhangfisher Awad",
+    "tags": [
+      "i18n",
+      "vue3",
+      "Internationalization"
+    ],
+    "type": "community"
   }
 ]

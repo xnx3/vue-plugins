@@ -1718,5 +1718,18 @@
       "i18n"
      ],
     "type": "community"
+  },
+  {
+    "id": "vue-to-print",
+    "name": "Vue To Print",
+    "description": "Print Vue components in the browser. Supports Chrome, Safari, Firefox and EDGE",
+    "category": "Utilities",
+    "packageName": "vue-to-print",
+    "githubUrl": "https://github.com/siaikin/vue-to-print",
+    "npmUrl": "https://www.npmjs.com/package/vue-to-print",
+    "documentationUrl": "https://vue-to-print.netlify.app/",
+    "author": "siaikin",
+    "tags": ["vue3", "typescript", "community", "print", "printer"],
+    "type": "community"
   }
 ]

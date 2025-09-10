@@ -1278,7 +1278,7 @@
   {
     "id": "nuxt-ui",
     "name": "Nuxt UI",
-    "description": "Fully styled and customizable components for Nuxt & Vue built on Radix Vue and Tailwind CSS.",
+    "description": "Fully styled and customizable components for Nuxt & Vue built on Reka UI and Tailwind CSS.",
     "category": "UI Framework",
     "packageName": "@nuxt/ui",
     "githubUrl": "https://github.com/nuxt/ui",
@@ -1353,15 +1353,15 @@
     "type": "community"
   },
   {
-    "id": "radix-vue",
-    "name": "Radix Vue",
+    "id": "reka-ui",
+    "name": "Reka UI",
     "description": "Unstyled, accessible components for building high‑quality design systems and web apps in Vue.",
     "category": "UI Framework",
-    "packageName": "radix-vue",
-    "githubUrl": "https://github.com/radix-vue/radix-vue",
-    "npmUrl": "https://www.npmjs.com/package/radix-vue",
-    "documentationUrl": "https://www.radix-vue.com/",
-    "author": "Radix Vue Team",
+    "packageName": "reka-ui",
+    "githubUrl": "https://github.com/unovue/reka-ui",
+    "npmUrl": "https://www.npmjs.com/package/reka-ui",
+    "documentationUrl": "https://www.reka-ui.com/",
+    "author": "Unovue Team",
     "tags": [
       "headless",
       "accessible",

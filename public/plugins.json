@@ -1767,5 +1767,22 @@
       "preview"
      ],
     "type": "community"
+  },
+  {
+    "id": "json-editor-vue",
+    "name": "JSON Editor Vue",
+    "description": "Vue and Nuxt 2/3 isomorphic JSON editor, viewer, formatter and validator",
+    "category": "Utilities",
+    "packageName": "json-editor-vue",
+    "githubUrl": "https://github.com/cloydlau/json-editor-vue",
+    "npmUrl": "https://www.npmjs.com/package/json-editor-vue",
+    "documentationUrl": "https://github.com/cloydlau/json-editor-vue",
+    "author": "Cloyd Lau",
+    "tags": [
+      "json",
+      "editor",
+      "jsoneditor"
+     ],
+    "type": "community"
   }
 ]

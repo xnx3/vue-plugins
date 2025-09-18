@@ -1769,6 +1769,19 @@
     "type": "community"
   },
   {
+    "id": "vue-log-arsenal",
+    "name": "Vue Log Arsenal",
+    "description": "Vue 3 plugin with logging directives (`v-log`, `v-log-change`, `v-log-click`) to log the state or value of properties for faster debugging.",
+    "category": "Debugging",
+    "packageName": "vue-log-arsenal",
+    "githubUrl": "https://github.com/MvdZon/Vue3-log-arsenal",
+    "npmUrl": "https://www.npmjs.com/package/vue-log-arsenal",
+    "documentationUrl": "https://github.com/MvdZon/Vue3-log-arsenal#readme",
+    "author": "MvdZon",
+    "tags": ["vue3", "logging", "directives", "debugging", "community"],
+    "type": "community"
+  },
+  {
     "id": "json-editor-vue",
     "name": "JSON Editor Vue",
     "description": "Vue and Nuxt 2/3 isomorphic JSON editor, viewer, formatter and validator",

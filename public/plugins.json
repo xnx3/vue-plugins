@@ -1654,11 +1654,11 @@
     "documentationUrl": "https://vueicons.netlify.app/",
     "author": "Obiwan Pelosi",
     "tags": [
-      "icons", 
-      "svg", 
+      "icons",
+      "svg",
       "lightweight",
       "tree-shaking",
-      "vue3", 
+      "vue3",
       "community"
     ],
     "type": "community"
@@ -1677,7 +1677,7 @@
       "lightweight",
       "data-fetching",
       "pinia",
-      "vue3", 
+      "vue3",
       "community"
     ],
     "type": "community"
@@ -1730,6 +1730,24 @@
     "documentationUrl": "https://vue-to-print.netlify.app/",
     "author": "siaikin",
     "tags": ["vue3", "typescript", "community", "print", "printer"],
+    "type": "community"
+  },
+  {
+    "id": "vue-stripe",
+    "name": "Vue Stripe",
+    "description": "Vue components for Stripe.js and Elements.",
+    "category": "Utilities",
+    "packageName": "vue-stripe",
+    "githubUrl": "https://github.com/wobsoriano/vue-stripe",
+    "npmUrl": "https://www.npmjs.com/package/vue-stripe",
+    "documentationUrl": "https://www.vue-stripe.com",
+    "author": "wobsoriano",
+    "tags": [
+      "vue3",
+      "community",
+      "components",
+      "composables"
+     ],
     "type": "community"
   },
   {

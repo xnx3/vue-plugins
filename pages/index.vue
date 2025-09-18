@@ -249,7 +249,7 @@ watch(filters, (newFilters) => {
   
   if (newFilters.search) query.search = newFilters.search
   if (newFilters.category) query.category = newFilters.category
-  if (newFilters.sort !== 'stars-desc') query.sort = newFilters.sort
+  if (newFilters.sort !== 'downloads-desc') query.sort = newFilters.sort
   if (newFilters.page > 1) query.page = newFilters.page.toString()
   if (newFilters.limit !== 12) query.limit = newFilters.limit.toString()
   

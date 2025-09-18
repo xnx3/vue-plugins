@@ -1654,11 +1654,11 @@
     "documentationUrl": "https://vueicons.netlify.app/",
     "author": "Obiwan Pelosi",
     "tags": [
-      "icons", 
-      "svg", 
+      "icons",
+      "svg",
       "lightweight",
       "tree-shaking",
-      "vue3", 
+      "vue3",
       "community"
     ],
     "type": "community"
@@ -1677,7 +1677,7 @@
       "lightweight",
       "data-fetching",
       "pinia",
-      "vue3", 
+      "vue3",
       "community"
     ],
     "type": "community"
@@ -1733,6 +1733,24 @@
     "type": "community"
   },
   {
+    "id": "vue-stripe",
+    "name": "Vue Stripe",
+    "description": "Vue components for Stripe.js and Elements.",
+    "category": "Utilities",
+    "packageName": "vue-stripe",
+    "githubUrl": "https://github.com/wobsoriano/vue-stripe",
+    "npmUrl": "https://www.npmjs.com/package/vue-stripe",
+    "documentationUrl": "https://www.vue-stripe.com",
+    "author": "wobsoriano",
+    "tags": [
+      "vue3",
+      "community",
+      "components",
+      "composables"
+     ],
+    "type": "community"
+  },
+  {
     "id": "vue-markdown",
     "name": "Vue Markdown",
     "description": "Provide Vue 3+ component to render markdown content with unified pipeline",
@@ -1762,5 +1780,22 @@
     "author": "MvdZon",
     "tags": ["vue3", "logging", "directives", "debugging", "community"],
     "type": "community"
-  }
+  },
+  {
+    "id": "json-editor-vue",
+    "name": "JSON Editor Vue",
+    "description": "Vue and Nuxt 2/3 isomorphic JSON editor, viewer, formatter and validator",
+    "category": "Utilities",
+    "packageName": "json-editor-vue",
+    "githubUrl": "https://github.com/cloydlau/json-editor-vue",
+    "npmUrl": "https://www.npmjs.com/package/json-editor-vue",
+    "documentationUrl": "https://github.com/cloydlau/json-editor-vue",
+    "author": "Cloyd Lau",
+    "tags": [
+      "json",
+      "editor",
+      "jsoneditor"
+     ],
+    "type": "community"
+  },
 ]

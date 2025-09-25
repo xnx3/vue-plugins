@@ -1803,7 +1803,7 @@
     "name": "Vue3 DnD",
     "description": "Drag and Drop for Vue Composition API. Supports Vue2 and Vue3",
     "category": "Utilities",
-    "packageName": "json-editor-vue",
+    "packageName": "vue3-dnd",
     "githubUrl": "https://github.com/hcg1023/vue3-dnd",
     "npmUrl": "https://www.npmjs.com/package/vue3-dnd",
     "documentationUrl": "https://www.vue3-dnd.com",

@@ -1817,5 +1817,23 @@
       "community"
     ],
     "type": "community"
+  },
+  {
+    "id": "flagsmith-vue",
+    "name": "Flagsmith Vue",
+    "description": "Flagsmith Vue.js plugin that dynamically updates feature flags and traits in components.",
+    "category": "Utilities",
+    "packageName": "flagsmith-vue",
+    "githubUrl": "https://github.com/jhoermann/flagsmith-vue",
+    "npmUrl": "https://www.npmjs.com/package/flagsmith-vue",
+    "documentationUrl": "https://github.com/jhoermann/flagsmith-vue#readme",
+    "author": "Jochen Hörmann",
+    "tags": [
+      "feature-flags",
+      "flagsmith",
+      "vue3",
+      "vue2"
+    ],
+    "type": "community"
   }
 ]

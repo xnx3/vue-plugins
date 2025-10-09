@@ -28,16 +28,18 @@
             <span>Vue.js</span>
             <Icon name="lucide:external-link" class="h-4 w-4" />
           </a>
-          <button 
-            class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-            :title="colorMode.preference === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'"
-            @click="toggleColorMode"
-          >
-            <Icon 
-              :name="colorMode.preference === 'dark' ? 'lucide:sun' : 'lucide:moon'" 
-              class="h-5 w-5 text-slate-600 dark:text-slate-300 align-sub" 
-            />
-          </button>
+          <ClientOnly>
+            <button
+              class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              :title="colorMode.value === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'"
+              @click="toggleColorMode"
+            >
+              <Icon
+                :name="colorMode.value === 'dark' ? 'lucide:sun' : 'lucide:moon'"
+                class="h-5 w-5 text-slate-600 dark:text-slate-300 align-sub"
+              />
+            </button>
+          </ClientOnly>
         </nav>
       </div>
     </div>

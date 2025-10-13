@@ -1838,7 +1838,7 @@
   },
   {
     "id": "ai-i18n",
-    "name": "Vue AI I18n - translate.js",
+    "name": "AI I18n",
     "description": "AI fully automatic translation, no need to modify pages, no language configuration files, no API keys, ready to use upon integration",
     "category": "Internationalization",
     "packageName": "i18n-jsautotranslate",
@@ -1850,8 +1850,9 @@
       "i18n",
       "ai i18n",
       "translate",
-      "ai"
+      "ai translate",
+      "translate.js"
     ],
     "type": "community"
-  },
+  }
 ]

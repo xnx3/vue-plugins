@@ -1835,5 +1835,23 @@
       "vue2"
     ],
     "type": "community"
-  }
+  },
+  {
+    "id": "ai-i18n",
+    "name": "Vue AI I18n - translate.js",
+    "description": "AI fully automatic translation, no need to modify pages, no language configuration files, no API keys, ready to use upon integration",
+    "category": "Internationalization",
+    "packageName": "i18n-jsautotranslate",
+    "githubUrl": "https://github.com/xnx3/translate/tree/master/extend/vue/vue3",
+    "npmUrl": "https://www.npmjs.com/package/i18n-jsautotranslate",
+    "documentationUrl": "https://translate.zvo.cn/",
+    "author": "Leiming Guan",
+    "tags": [
+      "i18n",
+      "ai i18n",
+      "translate",
+      "ai"
+    ],
+    "type": "community"
+  },
 ]

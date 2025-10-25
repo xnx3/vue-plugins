@@ -1837,8 +1837,8 @@
     "type": "community"
   },
   {
-    "id": "ai-i18n",
-    "name": "AI I18n",
+    "id": "translate.js",
+    "name": "translate.js",
     "description": "AI fully automatic translation, no need to modify pages, no language configuration files, no API keys, ready to use upon integration",
     "category": "Internationalization",
     "packageName": "i18n-jsautotranslate",
